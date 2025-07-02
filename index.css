@@ -1,1 +1,239 @@
+body {
+    background-color: #fff;
+    color: #c7c7c7;
+    text-align: center;
+    font-family: rubik;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    height: 80vh;
+}
 
+a {
+    color: #007eff;
+    text-decoration: none;
+}
+a:hover {
+    color: #a5d2ff;
+}
+
+/* font */
+
+.rubik-<uniquifier > {
+    font-family: "Rubik", serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+p {
+    line-height: 1.3;
+    direction: rtl;
+    font-size: 0.8rem;
+}
+
+q {
+    line-height: 1.3;
+    direction: rtl;
+    font-size: small;
+}
+
+q {
+    /* پایه‌ای */
+    quotes: "“" "”" "‘" "’"; /* برای پشتیبانی از نقل قول‌های تو در تو */
+    font-style: normal; /* حذف مورب پیش‌فرض */
+
+    /* تایپوگرافی */
+    color: #4a4a4a;
+    font-size: 1.1em;
+    line-height: 1.6;
+
+    /* لایه‌بندی */
+    position: relative;
+    padding: 0 1.2em;
+
+    /* افکت‌ها */
+    transition: all 0.3s ease;
+}
+
+q::before,
+q::after {
+    /* علامت‌های نقل قول */
+    position: absolute;
+    color: #007eff;
+    font-size: 1.8em;
+    opacity: 0.7;
+}
+
+q::before {
+    content: open-quote;
+    left: -0.4em;
+    top: -0.2em;
+}
+
+q::after {
+    content: close-quote;
+    right: -0.4em;
+    bottom: -0.3em;
+}
+
+q:hover {
+    /* افکت هاور */
+    color: #333;
+    transform: translateY(-2px);
+}
+
+q:hover::before,
+q:hover::after {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+.allbox{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  }
+  
+.mybox {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 500px;
+    align-items: center;
+}
+.right-box img {
+    width: 180px;
+    height: auto;
+}
+
+.left-box {
+    display: flex;
+    padding-right: 5px;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: justify;
+    width: fit-content;
+}
+
+.nextbt {
+  margin-top: 10px;
+  direction: rtl;
+  color: #999;
+  font-size: 0.8rem;
+  }
+
+.nextbt:hover {
+  color:#c7c7c7;
+  }
+
+
+/*responsive*/
+@media (max-width: 750px) {
+    
+    .mybox {
+        width: 100%;
+    }
+    .right-box {
+        width: 50%;
+    }
+    .left-box {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .mybox {
+        width: 100%;
+    }
+    .right-box {
+        width: 50%;
+    }
+    .left-box {
+        width: 80%;
+    }
+}
+
+
+
+/* ناوبر ثابت بالا/راست (بدون تغییر) */
+.navbar {
+  margin: 5px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: fit-content;
+  border-radius: 30px;
+  background: #fff;
+  z-index: 1000;
+  padding: 0.4rem 0.8rem;
+  font-family: "Rubik", sans-serif;
+}
+
+/* فهرست اصلی */
+.nav-links {
+      list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
+    flex-direction: row-reverse;
+}
+
+/* آیتم‌ها */
+.nav-links a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav-links a:hover { color: #e0464e; }
+
+/* ---------- زیرمنو ---------- */
+.has-dropdown { position: relative; }
+
+/* منوی مخفی */
+.dropdown {
+  list-style: none;
+  position: absolute;
+  right: 0;          /* برای راست‌چین */
+  top: 185%;         /* کمی پایین‌تر از آیتم والد */
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  padding: 0.4rem 0;
+  min-width: 150px;
+  display: none;     /* پنهان پیش‌فرض */
+  z-index: 1100;
+  overflow: hidden;
+}
+.dropdown li { padding: 0; margin: 0; }
+.dropdown a {
+  display: block;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.78rem;
+}
+.dropdown a:hover { background: #f5f5f5; color: #e0464e; }
+
+/* نمایش زیرمنو در دسکتاپ (هاور) */
+@media (hover: hover) {
+  .has-dropdown:hover > .dropdown { display: block; border-radius: 20px; }
+}
+
+/* نمایش زیرمنو در موبایل با تپ/کلیک */
+.has-dropdown > a {
+  cursor: pointer;
+}
+.has-dropdown.open > .dropdown { 
+  display: block; 
+  border-radius: 20px;
+}
+
+/* موبایل: کمی کوچک‌تر و فشرده‌تر */
+@media (max-width: 600px) {
+  .nav-links { gap: 0.6rem; font-size: 0.75rem; }
+  .dropdown a { font-size: 0.74rem; }
+}
