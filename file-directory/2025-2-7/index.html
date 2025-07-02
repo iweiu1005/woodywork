@@ -19,17 +19,59 @@
   
   <ul>
     <!-- images file -->
-    <li class="file"><a href="https://uploadkon.ir/uploads/1daf02_25san-img.zip">san images.zip | 1.8mb </a></li>
+    <li class="file" data-slug="https://uploadkon.ir/uploads/1daf02_25san-img.zip">
+    <a href="https://uploadkon.ir/uploads/1daf02_25san-img.zip" 
+      data-slug="downloads/https://uploadkon.ir/uploads/1daf02_25san-img.zip">san images.zip</a>
+    <span class="meta">| 00 KB | <span class="dl-count">0</span> download</span>
+  </li>
 
     <!-- Video file -->
-    <li class="file"><a href="https://uploadkon.ir/uploads/015902_25camera-movement-shake-©-balter-edit-[39177DD].mp4">video.mp4 | 2.43mb </a></li>
+    <li class="file" data-slug="downloads/https://uploadkon.ir/uploads/015902_25camera-movement-shake-©-balter-edit-[39177DD].mp4">
+    <a href="https://uploadkon.ir/uploads/015902_25camera-movement-shake-©-balter-edit-[39177DD].mp4" 
+      data-slug="downloads/https://uploadkon.ir/uploads/015902_25camera-movement-shake-©-balter-edit-[39177DD].mp4">Preview.mp4</a>
+    <span class="meta">| 00 KB | <span class="dl-count">0</span> download</span>
+  </li>
 
     <!-- XML file -->
-    <li class="file"><a href="https://s33.picofile.com/file/8485521876/camera_movement_shake_balter_edit.xml.html">Camera Movement.xml | 56kb </a></li> 
+    <li class="file" data-slug="downloads/https://s33.picofile.com/file/8485521876/camera_movement_shake_balter_edit.xml.html">
+    <a href="https://s33.picofile.com/file/8485521876/camera_movement_shake_balter_edit.xml.html" 
+      data-slug="downloads/https://s33.picofile.com/file/8485521876/camera_movement_shake_balter_edit.xml.html">data.xml</a>
+    <span class="meta">| 00 KB | <span class="dl-count">0</span> download</span>
+  </li>
 
     <!-- how to use? -->
-    <li class="file"><a href="https://uploadkon.ir/uploads/173902_25avc-0903-1-1-.mp4">How to use Xml fils? | 14.2mb</a></li>
-    
+    <li class="file"><a href="https://uploadkon.ir/uploads/173902_25avc-0903-1-1-.mp4">How to use Xml fils? | 14.2mb</a></li>    
+        
   </ul>
+
+  <script>
+// ===== generic download counter =====
+function updateCounts() {
+  document.querySelectorAll("li.file[data-slug]").forEach(li => {
+    const slug = li.dataset.slug;
+    const countSpan = li.querySelector(".dl-count");
+    // get current count without incrementing
+    fetch(`https://counterapi.dev/api/get/woodywork.ir/${slug}`)
+      .then(r => r.json())
+      .then(d => countSpan.textContent = d.count ?? 0)
+      .catch(()=>{});
+  });
+}
+updateCounts();
+
+// attach click‑handler once to all links with class file
+document.querySelectorAll("li.file[data-slug] > a").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    const slug = link.dataset.slug;
+    const url  = link.getAttribute("href");
+    // increment counter then redirect
+    fetch(`https://counterapi.dev/api/hit/woodywork.ir/${slug}`)
+      .catch(()=>{})
+      .finally(() => window.location.href = url);
+  });
+});
+</script>
+  
 </body>
 </html>
