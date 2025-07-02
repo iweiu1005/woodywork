@@ -187,7 +187,7 @@ weightSelector.addEventListener("change", autoResizeText);
 
 downloadBtn.addEventListener("click", async () => {
     const script = document.createElement("script");
-    script.src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
+    script.src = "/js/libs/html2canvas.min.js";
     document.head.appendChild(script);
 
     await new Promise((resolve) => setTimeout(resolve, 500));
