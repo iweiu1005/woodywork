@@ -47,7 +47,8 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 
-        <script src="/js/html2canvas.min.js"></script>
+        <link rel="preload" href="/js/libs/html2canvas.min.js" as="script">
+
 
 
     </head>
@@ -233,6 +234,15 @@
 
         <!-- js -->
         <script src="vazir.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/js/sw.js').catch((err) =>
+      console.error('SW registration failed:', err)
+    );
+  });
+}
+        </script>
         
     </body>
 </html>
