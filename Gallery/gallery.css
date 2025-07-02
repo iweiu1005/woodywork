@@ -223,6 +223,7 @@
   display: none;     /* پنهان پیش‌فرض */
   z-index: 1100;
   overflow: hidden;
+width: max-content;
 }
 .dropdown li { padding: 0; margin: 0; }
 .dropdown a {
