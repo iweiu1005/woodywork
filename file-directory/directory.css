@@ -17,6 +17,11 @@
     h1 {
       font-size: 1.7rem;
       margin-bottom: 1rem;
+      background-color: #ececec;
+      width: fit-content;
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-family: math;
     }
 
     a {
