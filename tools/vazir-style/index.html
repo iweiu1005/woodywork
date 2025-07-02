@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <link href="https://woodywork.neocities.org/img/icon/17%20(2).png" rel="shortcut icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+        <meta property="og:title" content="ابزار آنلاین ساخت متن با فونتهای متنوع" />
+        <meta
+            property="og:description"
+            content="ساخت متن زیبا با فونت‌های فارسی رایگان و حالت Justify. ابزار آنلاین با امکان تغییر رنگ متن و پس‌زمینه و دانلود سریع خروجی. مناسب برای کپشن، ادیت و طراحی. Create beautiful Persian text with free fonts and justify style. An online tool with background/text color options and quick download. Perfect for captions, edits, and designs.
+
+"
+        />
+        <meta property="og:image" content="https://woodywork.neocities.org/img/js%20tools/vazir/photo_2025-04-23_11-18-02.jpg" />
+        <meta property="og:site_name" content="Telegraph" />
+        <meta property="article:published_time" content="2025-01-10T11:18:02+0000" />
+        <meta property="article:modified_time" content="2025-01-10T12:07:51+0000" />
+        <meta property="article:author" content="woody" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="ابزار آنلاین ساخت متن با فونتهای متنوع" />
+        <meta
+            property="og:description"
+            content="ساخت متن زیبا با فونت‌های فارسی رایگان و حالت Justify. ابزار آنلاین با امکان تغییر رنگ متن و پس‌زمینه و دانلود سریع خروجی. مناسب برای کپشن، ادیت و طراحی. Create beautiful Persian text with free fonts and justify style. An online tool with background/text color options and quick download. Perfect for captions, edits, and designs.
+
+"
+        />
+        <meta name="twitter:image" content="https://woodywork.neocities.org/img/js%20tools/vazir/photo_2025-04-23_11-18-02.jpg" />
+
+        <title>vazir code style</title>
+
+        <!-- افزودن فونت های گوگل -->
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Karla:wght@400;700&family=Playfair+Display:wght@400;700&family=Pacifico&family=Caveat:wght@400..700&family=Lalezar&family=Marhey:wght@300..700&family=Handjet:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+
+        <!-- style -->
+        <link rel="stylesheet" href="vazir.css" />
+
+        <link rel="stylesheet" href="https://woodywork.neocities.org/font/fira/fira_code.css" />
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    </head>
+    <body style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);">
+        <div class="container">
+            <div class="header-container">
+                <h1>ابزار ساخت متن زیبا</h1>
+                <p>ساخت متن زیبا با فونت&zwnj;های فارسی رایگان و حالت&zwnj;های مختلف ترازبندی</p>
+                <a href="#" style="color: #cafff1; text-decoration: none;">لینک همین صفحه بدون vpn</a>
+            </div>
+
+            <div class="text-options">
+                <div class="select-group" style="display: flex; flex-direction: column; margin: 10px;">
+                    <label for="alignSelector" style="margin-bottom: 10px;">انتخاب رنگ</label>
+                    <div class="color-selector">
+                        <button class="color-btn active" data-mode="light" title="مشکی روی سفید" onclick="changeColorMode('light')">الف</button>
+                        <button class="color-btn" data-mode="dark" title="سفید روی مشکی" onclick="changeColorMode('dark')">الف</button>
+                        <button class="color-btn" data-mode="custom" title="کاستومایز" onclick="openCustomizePopup()">الف</button>
+                    </div>
+                </div>
+
+                <div class="select-group" style="display: flex; flex-direction: column; margin: 10px;">
+                    <label for="alignSelector" style="margin-bottom: 10px;">انتخاب فونت</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select id="fontSelector" class="font-selector">
+                            <option value="VazirCodeHack">فونت وزیر کد</option>
+                            <option value="Rubik">فونت روبیک</option>
+                            <option value="Amiri">فونت امیری</option>
+                            <option value="Arial">فونت اریال</option>
+                            <option value="Fira Code">Fira Code</option>
+                            <option value="Dancing Script">فونت Dancing Script</option>
+                            <option value="Karla">فونت Karla</option>
+                            <option value="Playfair Display">فونت Playfair</option>
+                            <option value="Pacifico">فونت Pacifico</option>
+                            <option value="Caveat">فونت Caveat</option>
+                            <option value="Lalezar">فونت لاله زار</option>
+                            <option value="Marhey">فونت مرحی</option>
+                            <option value="Handjet">فونت Handjet</option>
+                            <option value="Noto Sans Arabic">فونت Noto Sans Arabic</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="weightGroup" class="select-group" style="display: flex; flex-direction: column; margin: 10px;">
+                    <label for="weightSelector" id="weightLabel" style="margin-bottom: 10px;">انتخاب وزن</label>
+                    <select id="weightSelector" class="weight-selector">
+                        <option value="400">وزن 400</option>
+                        <option value="700">وزن 700</option>
+                    </select>
+                </div>
+
+                <div class="select-group" style="display: flex; flex-direction: column; margin: 10px;">
+                    <label for="alignSelector" style="margin-bottom: 10px;">چینش متن</label>
+                    <select id="alignSelector" class="align-selector">
+                        <option value="justify">Justify</option>
+                        <option value="right">Right</option>
+                        <option value="left">Left</option>
+                        <option value="center">Center</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-write">
+                <textarea id="input" placeholder="متن خود را اینجا بنویسید..." style="direction: rtl; width: 360px; margin: 15px;"></textarea>
+                <div id="output" class="output-box" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">
+                    <span class="text-content" style="font-weight: 400; font-family: VazirCodeHack; font-size: 43px; overflow-y: hidden;">متن خود را اینجا بنویسید... </span>
+                </div>
+            </div>
+            <div class="dlbtn">
+                <button id="downloadBtn" class="download-btn">دانلود عکس</button>
+                <button id="howtouse" class="howtouse-btn">
+                    <i class="ph ph-video" style="font-size: 19px;"></i>
+                    آموزش استفاده از ابزار
+                </button>
+            </div>
+
+            <div class="info-panel">
+                <h2>امکانات ویژه</h2>
+
+                <div class="features">
+                    <div class="feature">
+                        <h3><span class="feature-icon">1</span>فونت های مختلف فارسی و انگلیسی</h3>
+                        <p>دسترسی به مجموعه‌ای از بهترین فونت‌های فارسی و انگلیسی برای ایجاد متن‌های زیبا و حرفه‌ای</p>
+                        <p>فونت های فارسی مانند: روبیک، وزیر کد، امیری، لاله زار، مرحی، هندجت، نوتوسنس عربی و فونت های انگلیسی مانند: arial, fira code, dancing script, karla, playfair, pacifico, caveat</p>
+                    </div>
+
+                    <div class="feature">
+                        <h3><span class="feature-icon">2</span> تنظیمات پیشرفته</h3>
+                        <p>کنترل کامل بر روی وزن فونت، ترازبندی متن و رنگ‌بندی برای سفارشی‌سازی کامل</p>
+                        <p>بعضی از فونتها دارای وزنهای مختلف هستند که میتونید در متن ساخته شده استفاده کنید فونت هایی مثل: روبیک، امیری، نوتوسنس عربی،firacode,dancing script, karla, playfair</p>
+                    </div>
+
+                    <div class="feature">
+                        <h3><span class="feature-icon">3</span> خروجی با کیفیت</h3>
+                        <p>دانلود متن نهایی با کیفیت بالا به صورت تصویر برای استفاده در شبکه‌های اجتماعی و طرح‌ها</p>
+                    </div>
+                    <div class="feature">
+                        <h3><span class="feature-icon">4</span>استایل های متنوع</h3>
+                        <p>با استفاده از سه کد میتونید استایل های جدا برای متن دلخواهتون اضافه کنید، استایل های : بولد، ایتالیک و تغییر رنگ</p>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3>راهنمای استفاده از استایل‌ها</h3>
+                    <ul>
+                        <li>برای متن <strong>پررنگ</strong> از **متن پررنگ** استفاده کنید</li>
+                        <li>برای متن <em>کج</em> از *متن کج* استفاده کنید</li>
+                        <li>برای تغییر رنگ متن: [color=#4A78FF]متن آبی[/color]</li>
+                        <li>از ترکیب استایل‌ها برای ایجاد متن‌های جذاب استفاده کنید</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>ابزار ساخت متن زیبا - طراحی شده برای ایجاد متن‌های حرفه‌ای در چند ثانیه</p>
+                <p>
+                آخرین آپدیت 6 تیر 1404
+                </p>
+                <div class="footer-links">
+                    <a href="https://rastikerdar.github.io/vazir-code-font/">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                            ></path>
+                        </svg>
+                        فونت وزیر کد
+                    </a>
+                    <a href="https://fonts.google.com/">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 0v16h16V0H0zm8.5 12.5H7v-5H5.5V5H10v2.5H8.5v5z"></path>
+                        </svg>
+                        فونت‌های گوگل
+                    </a>
+                    <a href="https://woodywork.neocities.org/">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM7 11.5a.5.5 0 0 1-1 0v-6a.5.5 0 0 1 1 0v6zm2.5 0a.5.5 0 0 1-1 0v-6a.5.5 0 0 1 1 0v6z"></path>
+                        </svg>
+                        ساخته شده توسط وودی
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- End container -->
+
+        <!-- پاپ‌آپ آموزش -->
+        <div id="howtousePopup" class="popup-howtouse">
+            <div class="howtouse-content">
+                <h2 class="popup-title">آموزش استفاده از ابزار</h2>
+                <p class="popup-subtitle">راهنمای گام به گام برای ساخت متن‌های زیبا</p>
+
+                <img src="https://woodywork.neocities.org/img/other/vazir/Brat%20Lyric.jpg" alt="آموزش استفاده از ابزار" />
+
+                <div class="video-links">
+                    <a href="https://www.aparat.com/v/lxg986s" class="video-link aparat"> <i class="fas fa-play-circle"></i> تماشا در آپارات </a>
+
+                    <a href="https://youtu.be/caKiWcSUSzI" class="video-link youtube"> <i class="fab fa-youtube"></i> تماشا در یوتیوب </a>
+
+                    <a href="https://t.me/editbalter/6377" class="video-link telegram"> <i class="fab fa-telegram"></i> تماشا در تلگرام </a>
+                </div>
+
+                <button class="close-btn" onclick="closeHowToUsePopup()"><i class="fas fa-times"></i> بستن پنجره</button>
+            </div>
+        </div>
+
+        <!-- پنجره پاپ آپ کاستومایز -->
+        <div id="customizePopup" class="popup-overlay">
+            <div class="popup-content">
+                <div class="color-picker-container">
+                    <div class="color-picker">
+                        <label for="textColor">رنگ متن : </label>
+                        <input type="color" id="textColor" onchange="updateCustomColor()" />
+                        <input type="text" id="textColorInput" oninput="syncColorPickers('textColor')" placeholder="#000000" />
+                    </div>
+                    <div class="color-picker">
+                        <label for="backgroundColor">رنگ پس زمینه :</label>
+                        <input type="color" id="backgroundColor" onchange="updateCustomColor()" />
+                        <input type="text" id="backgroundColorInput" oninput="syncColorPickers('backgroundColor')" placeholder="#ffffff" />
+                    </div>
+                    <span class="close" onclick="closeCustomizePopup()">بستن پنجره</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- js -->
+        <script src="vazir.js"></script>
+    </body>
+</html>
