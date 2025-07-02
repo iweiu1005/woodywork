@@ -185,7 +185,13 @@ fontSelector.addEventListener("change", (e) => {
 
 weightSelector.addEventListener("change", autoResizeText);
 
-downloadBtn.addEventListener("click", () => {
+downloadBtn.addEventListener("click", async () => {
+    const script = document.createElement("script");
+    script.src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
+    document.head.appendChild(script);
+
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     html2canvas(document.getElementById("output"), {
         useCORS: true,
         allowTaint: true,
@@ -197,7 +203,6 @@ downloadBtn.addEventListener("click", () => {
         link.click();
     });
 });
-
 
 // رویداد برای ترازبندی متن
 document.getElementById("alignSelector").addEventListener("change", function () {
@@ -222,6 +227,3 @@ document.getElementById("alignSelector").addEventListener("change", function () 
                 closeHowToUsePopup();
             }
         });        
-
-
-
