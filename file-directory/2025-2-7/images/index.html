@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Index of /</title>
+  <style>
+    /* ===== Minimal vintage directory style ===== */
+    :root {
+      /* easy theme customization */
+      --bg: #fcfcfc;
+      --text: #000;
+      --link: #0066cc;
+    }
 
+    body {
+      margin: 2rem;
+      font-family: "Courier New", Courier, monospace;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 4px 0;
+    }
+
+    /* simple prefixes */
+    .dir::before  { content: "[DIR]  "; color: #555; }
+    .file::before { content: "      "; }
+  </style>
+</head>
+<body>
+  <h1>Index of /</h1>
+
+  <ul>
+    <!-- Directory for images -->
+    <li class="file"><a href="https://s33.picofile.com/file/8485516142/9c9ae2389b547cabb0ada77e2a7b71fa.jpg">san.png</a></li>
+
+  </ul>
+</body>
+</html>
