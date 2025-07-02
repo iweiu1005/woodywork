@@ -31,7 +31,7 @@ self.addEventListener('fetch', (event) => {
   // فقط درخواست‌های GET و همان فایل موردنظر را هندل کنیم
   if (
     request.method === 'GET' &&
-    request.url.endsWith('/js/libs/html2canvas.min.js')
+    request.url.endsWith('/js/html2canvas.min.js')
   ) {
     event.respondWith(
       caches.match(request).then((cached) =>
