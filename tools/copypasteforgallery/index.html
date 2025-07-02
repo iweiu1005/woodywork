@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gallery HTML Generator</title>
+
+    <!-- Mono font for better code readability -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" />
+
+    <style>
+      body {
+        font-family: "Fira Mono", monospace;
+        background: #f7f7f7;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      label {
+        display: block;
+        margin: 0.5rem 0;
+        font-weight: 700;
+      }
+
+      textarea,
+      select,
+      button {
+        font-family: inherit;
+        font-size: 0.9rem;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 0.5rem;
+        resize: vertical;
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+      }
+
+      #output {
+        height: 200px;
+      }
+
+      select {
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+        background: #fff;
+      }
+
+      button {
+        padding: 0.5rem 1.2rem;
+        margin-top: 0.8rem;
+        margin-inline-end: 0.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        background: #0d6efd;
+        color: #fff;
+        transition: background 0.2s ease-in-out;
+      }
+
+      button:hover:not(:disabled) {
+        background: #084298;
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>تولیدکنندهٔ کد گالری WoodyWork</h1>
+
+    <label for="classSelect">کلاس آیتم‌ها:</label>
+    <select id="classSelect">
+      <option value="design">design</option>
+      <option value="art">art</option>
+    </select>
+
+    <label for="linkInput">لینک‌ها (هر لینک را با کاما جدا کنید):</label>
+    <textarea
+      id="linkInput"
+      placeholder="https://example.com/img1.jpg, https://example.com/img2.png"
+      rows="6"
+    ></textarea>
+
+    <button id="generateBtn">Generate</button>
+    <button id="copyBtn" disabled>Copy</button>
+
+    <label for="output">کد خروجی:</label>
+    <textarea id="output" readonly></textarea>
+
+    <script>
+      const generateBtn = document.getElementById("generateBtn");
+      const copyBtn = document.getElementById("copyBtn");
+      const linkInput = document.getElementById("linkInput");
+      const output = document.getElementById("output");
+      const classSelect = document.getElementById("classSelect");
+
+      generateBtn.addEventListener("click", () => {
+        const cls = classSelect.value.trim();
+        const links = linkInput.value
+          .split(",")
+          .map((l) => l.trim())
+          .filter((l) => l);
+
+        const lines = links
+          .map(
+            (url) =>
+              `<a href="" class="${cls}"><img src="${url}" alt="woody work" /></a>`
+          )
+          .join("\n");
+
+        output.value = lines;
+        copyBtn.disabled = !lines;
+      });
+
+      copyBtn.addEventListener("click", () => {
+        output.select();
+        document.execCommand("copy");
+      });
+    </script>
+  </body>
+</html>
