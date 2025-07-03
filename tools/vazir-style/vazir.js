@@ -190,46 +190,55 @@ fontSelector.addEventListener("change", (e) => {
 weightSelector.addEventListener("change", autoResizeText);
 
 downloadBtn.addEventListener("click", async () => {
-  /* ۱) لودر را نشان بده */
+  // نمایش لودر
   loader.style.display = "flex";
+  remain.textContent = "";  // خالی کردن متن قبلی
 
-  /* ۲) تخمین زمان باقیمانده */
-  let est  = loadTimes.length
-             ? loadTimes.reduce((a, b) => a + b, 0) / loadTimes.length
-             : 3;                  // بار اول ۳ ثانیه حدس می‌زنیم
+  // تخمین زمان بر اساس دفعات قبل
+  let est = loadTimes.length
+    ? loadTimes.reduce((a, b) => a + b, 0) / loadTimes.length
+    : 3;
   let left = est;
   const timer = setInterval(() => {
     left = Math.max(left - 0.1, 0);
     remain.textContent = left.toFixed(1) + " ثانیه";
   }, 100);
 
-  /* ۳) گرفتن اسکرین‌شات */
-  const t0 = performance.now();
-  const canvas = await html2canvas(document.getElementById("output"), {
-    useCORS: true,
-    allowTaint: true,
-    scale: 1,                     // کیفیت مناسب و سریع
-    ignoreElements: el => el.id === "downloadBtn"
-  });
-  const t1 = performance.now();
-  clearInterval(timer);
+  try {
+    // تولید تصویر
+    const t0 = performance.now();
+    const canvas = await html2canvas(document.getElementById("output"), {
+      useCORS: true,
+      allowTaint: true,
+      scale: 1,
+      ignoreElements: el => el.id === "downloadBtn"
+    });
+    const t1 = performance.now();
 
-  /* ۴) ذخیرهٔ این زمان برای دفعات بعد */
-  loadTimes.push((t1 - t0) / 1000);
+    // ذخیره زمان
+    clearInterval(timer);
+    loadTimes.push((t1 - t0) / 1000);
 
-  /* ۵) دانلود فایل */
-  const link = document.createElement("a");
-  link.download = `text-design-${Date.now()}.png`;
-  link.href = canvas.toDataURL("image/png", 0.92);
-  link.click();
+    // دانلود
+    const link = document.createElement("a");
+    link.download = `text-design-${Date.now()}.png`;
+    link.href = canvas.toDataURL("image/png", 0.92);
+    link.click();
 
-  /* ۶) پیام نهایی و مخفی کردن لودر */
-  loader.textContent = `تصویر آماده شد در ${( (t1 - t0) / 1000 ).toFixed(1)} ثانیه`;
+    // پیام موفقیت
+    remain.textContent = ` تصویر آماده شد در ${( (t1 - t0) / 1000 ).toFixed(1)} ثانیه `;
+  } catch (err) {
+    remain.textContent = "خطا در تولید تصویر 😞";
+    console.error("Download error:", err);
+  }
+
+  // بستن لودر بعد از 1.5 ثانیه
   setTimeout(() => {
     loader.style.display = "none";
-    loader.innerHTML = 'در حال آماده‌سازی تصویر… <span id="remain"></span>';
+    remain.textContent = "";
   }, 1500);
 });
+
 
 
 // رویداد برای ترازبندی متن
