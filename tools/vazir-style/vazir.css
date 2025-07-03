@@ -873,3 +873,9 @@ textarea {
         width: 350px !important;
     }
 }
+/* لودر ساده */
+  #loader {
+    position: fixed; inset: 0; display:none; align-items:center;
+    justify-content:center; background:#0008; color:#fff; font-size:1.2rem;
+    z-index: 9999;
+  }
