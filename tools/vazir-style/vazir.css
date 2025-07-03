@@ -879,3 +879,59 @@ textarea {
     justify-content:center; background:#0008; color:#fff; font-size:1.2rem;
     z-index: 9999;
   }
+
+/* ——— Vazir Code ——— */
+@font-face {
+  font-family: 'VazirCodeHack';
+  src:
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code-Hack.woff2') format('woff2'),
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code-Hack.woff')  format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {                 /* Extra‑Height (اختیاری) */
+  font-family: 'VazirCodeHack';
+  src:
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code-Hack-Extra-Height.woff2') format('woff2'),
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code-Hack-Extra-Height.woff')  format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* اگر نسخه‌ی «Hack» را نمی‌خواهید، می‌توانید این‌ها را هم اضافه کنید */
+@font-face {
+  font-family: 'VazirCode';
+  src:
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code.woff2') format('woff2'),
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code.woff')  format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {                 /* Extra‑Height (اختیاری) */
+  font-family: 'VazirCode';
+  src:
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code-Extra-Height.woff2') format('woff2'),
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/vazir/Vazir-Code-Extra-Height.woff')  format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ——— Fira Code ——— */
+@font-face {
+  font-family: 'Fira Code';
+  src:
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/fira/FiraCode-Regular.woff2') format('woff2'),
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/fira/FiraCode-Regular.woff')  format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {                 /* وزن 700 */
+  font-family: 'Fira Code';
+  src:
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/fira/FiraCode-Bold.woff2') format('woff2'),
+    url('https://raw.githubusercontent.com/iweiu1005/woodywork/main/file-directory/font/fira/FiraCode-Bold.woff')  format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
