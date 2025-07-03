@@ -190,81 +190,68 @@ fontSelector.addEventListener("change", (e) => {
 weightSelector.addEventListener("change", autoResizeText);
 
 downloadBtn.addEventListener("click", async () => {
-  // نمایش لودر
+  // 1) لودر
   loader.style.display = "flex";
-  remain.textContent = "";  // خالی کردن متن قبلی
+  remain.textContent = "";
 
-  // تخمین زمان بر اساس دفعات قبل
+  // 2) تخمین زمان
   let est = loadTimes.length
-    ? loadTimes.reduce((a, b) => a + b, 0) / loadTimes.length
-    : 3;
+          ? loadTimes.reduce((a,b)=>a+b,0)/loadTimes.length
+          : 3;
   let left = est;
-  const timer = setInterval(() => {
-    left = Math.max(left - 0.1, 0);
+  const tick = setInterval(()=>{
+    left = Math.max(left-0.1,0);
     remain.textContent = left.toFixed(1) + " ثانیه";
-  }, 100);
+  },100);
 
   try {
-    // تولید تصویر
+    // 3) تولید تصویر
     const t0 = performance.now();
     const canvas = await html2canvas(document.getElementById("output"), {
-      useCORS: true,
-      allowTaint: true,
-      scale: 1,
+      backgroundColor: "#ffffff",       // ← اصلاح رنگ
+      useCORS: true, allowTaint: true, scale: 1,
       ignoreElements: el => el.id === "downloadBtn"
     });
     const t1 = performance.now();
+    clearInterval(tick);
+    loadTimes.push((t1-t0)/1000);
 
-    // ذخیره زمان
-    clearInterval(timer);
-    loadTimes.push((t1 - t0) / 1000);
+    // 4) ساخت Blob و لینک
+    canvas.toBlob(blob=>{
+      if(!blob){ remain.textContent="خطا 😞"; return; }
 
-    // دانلود
-    // --- دانلود به‌صورت Blob ---
-canvas.toBlob(blob => {
-  if (!blob) {
-    remain.textContent = "خطا در ایجاد تصویر 😞";
-    return;
-  }
+      const url   = URL.createObjectURL(blob);
+      const name  = `text-design-${Date.now()}.png`;
+      const link  = document.createElement("a");
+      link.href      = url;
+      link.download  = name;
+      document.body.appendChild(link);         // ← لازم برای موبایل
 
-  // آدرس موقتی از Blob می‌سازیم
-  const url  = URL.createObjectURL(blob);
-  const name = `text-design-${Date.now()}.png`;
+      const isiOS = /iP(hone|od|ad)/.test(navigator.userAgent);
+      if(isiOS){
+        window.open(url,"_blank");
+      }else{
+        link.click();
+      }
 
-  // لینک را داخل DOM قرار می‌دهیم (برای موبایل ضروری است)
-  const link = document.createElement("a");
-  link.href      = url;
-  link.download  = name;
-  document.body.appendChild(link);
+      // تأخیر کوتاه، بعد پاکسازی
+      setTimeout(()=>{
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }, 1500);
+    });
 
-  // iOS Safari ویژگی download را نادیده می‌گیرد → تب جدید باز شود
-  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if (isiOS) {
-    window.open(url, "_blank");
-  } else {
-    link.click();
-  }
-
-  // تمیزکاری
-  setTimeout(() => {
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }, 0);
-});
-
-
-    // پیام موفقیت
-    remain.textContent = ` تصویر آماده شد در ${( (t1 - t0) / 1000 ).toFixed(1)} ثانیه `;
-  } catch (err) {
+    remain.textContent = `آماده شد در ${( (t1-t0)/1000 ).toFixed(1)} ثانیه`;
+  } catch(err){
+    console.error(err);
     remain.textContent = "خطا در تولید تصویر 😞";
-    console.error("Download error:", err);
   }
 
-  // بستن لودر بعد از 1.5 ثانیه
-  setTimeout(() => {
-    loader.style.display = "none";
-    remain.textContent = "";
-  }, 1500);
+  // 5) مخفی کردن لودر
+  setTimeout(()=>{
+    loader.style.display="none";
+    remain.textContent="";
+  }, 2500);
 });
 
 
