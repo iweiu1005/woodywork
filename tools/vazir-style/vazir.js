@@ -220,10 +220,38 @@ downloadBtn.addEventListener("click", async () => {
     loadTimes.push((t1 - t0) / 1000);
 
     // دانلود
-    const link = document.createElement("a");
-    link.download = `text-design-${Date.now()}.png`;
-    link.href = canvas.toDataURL("image/png", 0.92);
+    // --- دانلود به‌صورت Blob ---
+canvas.toBlob(blob => {
+  if (!blob) {
+    remain.textContent = "خطا در ایجاد تصویر 😞";
+    return;
+  }
+
+  // آدرس موقتی از Blob می‌سازیم
+  const url  = URL.createObjectURL(blob);
+  const name = `text-design-${Date.now()}.png`;
+
+  // لینک را داخل DOM قرار می‌دهیم (برای موبایل ضروری است)
+  const link = document.createElement("a");
+  link.href      = url;
+  link.download  = name;
+  document.body.appendChild(link);
+
+  // iOS Safari ویژگی download را نادیده می‌گیرد → تب جدید باز شود
+  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (isiOS) {
+    window.open(url, "_blank");
+  } else {
     link.click();
+  }
+
+  // تمیزکاری
+  setTimeout(() => {
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }, 0);
+});
+
 
     // پیام موفقیت
     remain.textContent = ` تصویر آماده شد در ${( (t1 - t0) / 1000 ).toFixed(1)} ثانیه `;
