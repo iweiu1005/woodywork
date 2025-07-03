@@ -4,6 +4,10 @@ const output = document.querySelector(".text-content");
 const fontSelector = document.getElementById("fontSelector");
 const weightSelector = document.getElementById("weightSelector");
 const downloadBtn = document.getElementById("downloadBtn");
+// --- لودر تمام‌صفحه ---
+const loader  = document.getElementById("loader");
+const remain  = document.getElementById("remain");
+const loadTimes = [];        // برای تخمین دفعات بعد
 let resizeTimeout;
 let lastValidSize;
 
@@ -186,23 +190,47 @@ fontSelector.addEventListener("change", (e) => {
 weightSelector.addEventListener("change", autoResizeText);
 
 downloadBtn.addEventListener("click", async () => {
-    const script = document.createElement("script");
-    script.src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
-    document.head.appendChild(script);
+  /* ۱) لودر را نشان بده */
+  loader.style.display = "flex";
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+  /* ۲) تخمین زمان باقیمانده */
+  let est  = loadTimes.length
+             ? loadTimes.reduce((a, b) => a + b, 0) / loadTimes.length
+             : 3;                  // بار اول ۳ ثانیه حدس می‌زنیم
+  let left = est;
+  const timer = setInterval(() => {
+    left = Math.max(left - 0.1, 0);
+    remain.textContent = left.toFixed(1) + " ثانیه";
+  }, 100);
 
-    html2canvas(document.getElementById("output"), {
-        useCORS: true,
-        allowTaint: true,
-        ignoreElements: (el) => el.id === "downloadBtn",
-    }).then((canvas) => {
-        const link = document.createElement("a");
-        link.download = `text-design-${Date.now()}.png`;
-        link.href = canvas.toDataURL("image/png", 1.0);
-        link.click();
-    });
+  /* ۳) گرفتن اسکرین‌شات */
+  const t0 = performance.now();
+  const canvas = await html2canvas(document.getElementById("output"), {
+    useCORS: true,
+    allowTaint: true,
+    scale: 1,                     // کیفیت مناسب و سریع
+    ignoreElements: el => el.id === "downloadBtn"
+  });
+  const t1 = performance.now();
+  clearInterval(timer);
+
+  /* ۴) ذخیرهٔ این زمان برای دفعات بعد */
+  loadTimes.push((t1 - t0) / 1000);
+
+  /* ۵) دانلود فایل */
+  const link = document.createElement("a");
+  link.download = `text-design-${Date.now()}.png`;
+  link.href = canvas.toDataURL("image/png", 0.92);
+  link.click();
+
+  /* ۶) پیام نهایی و مخفی کردن لودر */
+  loader.textContent = `تصویر آماده شد در ${( (t1 - t0) / 1000 ).toFixed(1)} ثانیه`;
+  setTimeout(() => {
+    loader.style.display = "none";
+    loader.innerHTML = 'در حال آماده‌سازی تصویر… <span id="remain"></span>';
+  }, 1500);
 });
+
 
 // رویداد برای ترازبندی متن
 document.getElementById("alignSelector").addEventListener("change", function () {
