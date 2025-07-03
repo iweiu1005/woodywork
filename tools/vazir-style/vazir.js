@@ -208,10 +208,13 @@ downloadBtn.addEventListener("click", async () => {
     // 3) تولید تصویر
     const t0 = performance.now();
     const canvas = await html2canvas(document.getElementById("output"), {
-      backgroundColor: "#ffffff",       // ← اصلاح رنگ
-      useCORS: true, allowTaint: true, scale: 1,
-      ignoreElements: el => el.id === "downloadBtn"
-    });
+  backgroundColor: "#ffffff",   // ← سفیدِ مطلق
+  useCORS: true,
+  allowTaint: true,
+  scale: 1,
+  ignoreElements: el => el.id === "downloadBtn"
+});
+
     const t1 = performance.now();
     clearInterval(tick);
     loadTimes.push((t1-t0)/1000);
