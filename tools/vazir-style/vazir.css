@@ -935,3 +935,12 @@ textarea {
   font-weight: 700;
   font-display: swap;
 }
+#mobileFallback {
+  display: none;
+  direction: rtl;
+  font-family: 'Vazir', sans-serif;
+}
+
+#closeFallback {
+  cursor: pointer;
+}
