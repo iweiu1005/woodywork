@@ -108,6 +108,7 @@ function autoResizeText() {
   const parent = output.parentElement;
   const isMobile = window.matchMedia("(max-width: 300px)").matches;
   const minFontSize = isMobile ? 6 : 8;
+  const availableHeight = parent.clientHeight - 30;  // 15px بالاوپایین padding
   
   // محاسبه فضای در دسترس با احتساب padding
   const availableHeight = parent.clientHeight - 30; // 15px padding از بالا و پایین
@@ -135,8 +136,8 @@ function parseCustomTags(text) {
     .replace(/\[color=(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\](.*?)\[\/color\]/g, (match, color, content) => {
       return `<span style="color: ${color}; line-height: 1.4;">${content}</span>`;
     })
-    .replace(/\*\*(.*?)\*\*/g, "<strong style='line-height: 1.4;'>$1</strong>")
-    .replace(/\*(.*?)\*/g, "<em style='line-height: 1.4;'>$1</em>");
+    .replace(/\*\*(.*?)\*\*/g, "<strong style='line-height:1.4;'>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em style='line-height:1.4;'>$1</em>");
 }
 
 // مقداردهی اولیه
@@ -229,6 +230,7 @@ input.addEventListener("input", (e) => {
 
 fontSelector.addEventListener("change", (e) => {
     updateWeights(e.target.value);
+    lastValidSize = null;    // ← ریست
     autoResizeText();
 });
 
