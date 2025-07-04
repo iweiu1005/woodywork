@@ -100,26 +100,43 @@ function changeColorMode(mode) {
 }
 
 function autoResizeText() {
-    const selectedWeight = weightSelector.value;
-    output.style.fontWeight = selectedWeight;
-    output.style.fontFamily = fontSelector.value;
+  const selectedWeight = weightSelector.value;
+  output.style.fontWeight = selectedWeight;
+  output.style.fontFamily = fontSelector.value;
 
-    let fontSize = 120;
-    const parent = output.parentElement;
-    const isMobile = window.matchMedia("(max-width: 300px)").matches;
-    const minFontSize = isMobile ? 6 : 8;
-
-    while (fontSize >= minFontSize) {
-        output.style.fontSize = `${fontSize}px`;
-        if (output.scrollHeight <= parent.clientHeight) {
-            lastValidSize = fontSize;
-            break;
-        }
-        fontSize--;
+  let fontSize = 120;
+  const parent = output.parentElement;
+  const isMobile = window.matchMedia("(max-width: 300px)").matches;
+  const minFontSize = isMobile ? 6 : 8;
+  
+  // محاسبه فضای در دسترس با احتساب padding
+  const availableHeight = parent.clientHeight - 30; // 15px padding از بالا و پایین
+  
+  while (fontSize >= minFontSize) {
+    output.style.fontSize = `${fontSize}px`;
+    
+    // محاسبه ارتفاع واقعی متن با احتساب خطوط متعدد
+    const textHeight = output.scrollHeight;
+    
+    if (textHeight <= availableHeight) {
+      lastValidSize = fontSize;
+      break;
     }
+    fontSize--;
+  }
 
-    output.style.fontSize = `${lastValidSize}px`;
-    output.style.overflowY = output.scrollHeight > parent.clientHeight ? "auto" : "hidden";
+  output.style.fontSize = `${lastValidSize}px`;
+  output.style.overflowY = output.scrollHeight > availableHeight ? "auto" : "hidden";
+}
+
+// در تابع parseCustomTags، ارتفاع خط را تنظیم کنید:
+function parseCustomTags(text) {
+  return text
+    .replace(/\[color=(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\](.*?)\[\/color\]/g, (match, color, content) => {
+      return `<span style="color: ${color}; line-height: 1.4;">${content}</span>`;
+    })
+    .replace(/\*\*(.*?)\*\*/g, "<strong style='line-height: 1.4;'>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em style='line-height: 1.4;'>$1</em>");
 }
 
 // مقداردهی اولیه
@@ -243,7 +260,7 @@ downloadBtn.addEventListener("click", async () => {
 
   try {
     const canvas = await html2canvas(document.getElementById("output"), {
-      backgroundColor: "#ffffff",
+      backgroundColor: null ,
       scale: window.devicePixelRatio < 2 ? 1 : 0.8,
       ignoreElements: el => el.id === "downloadBtn",
       useCORS: true,
