@@ -103,7 +103,6 @@ textarea {
     margin: 15px;
     filter: blur(1.5px) !important;
     font-family: inherit; /* تغییر مهم برای فونت های مختلف */
-    line-height: 1.4; /* ارتفاع خط مناسب */
 }
 
 .details {
