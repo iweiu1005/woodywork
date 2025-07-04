@@ -76,11 +76,13 @@ textarea {
 
 .output-box {
     font-family: "VazirCodeHack", "Rubik", "Amiri", "Noto Sans Arabic", "Arial", "Dancing Script", "Karla", "Playfair Display", "Pacifico", "Caveat", "Lalezar", "Marhey", "Handjet", monospace;
-    overflow: visible !important;
+    overflow: hidden ;
     direction: rtl;
     position: relative;
     text-align: justify;
     line-height: 1.5;
+    padding: 15px; /* فضای داخلی اضافه کنید */
+    box-sizing: border-box; /* اطمینان از محاسبه صحیح اندازه‌ها *
 }
 
 .text-content {
@@ -102,6 +104,7 @@ textarea {
     margin: 15px;
     filter: blur(1.5px) !important;
     font-family: inherit; /* تغییر مهم برای فونت های مختلف */
+    line-height: 1.4; /* ارتفاع خط مناسب */
 }
 
 .details {
