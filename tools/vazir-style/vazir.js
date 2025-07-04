@@ -30,6 +30,34 @@ const fontWeights = {
 };
 
 
+/* —— دانلود سازگار با موبایل —— */
+function mobileDownload(url, filename) {
+
+  // روش iframe
+  try {
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = url;
+    document.body.appendChild(iframe);
+    return true;
+  } catch (e) {
+    console.warn('iframe error', e);
+  }
+
+  // روش تب جدید
+  try {
+    const win = window.open(url, '_blank');
+    if (win && !win.closed) return true;
+  } catch (e) {
+    console.warn('popup error', e);
+  }
+
+  // روش لینک متنی
+  alert(`برای دانلود تصویر، روی این لینک بزنید:\n${url}`);
+  return false;
+}
+
+
 function parseCustomTags(text) {
     return text
         // رنگ (همچنان از BBCode-style)
@@ -190,72 +218,71 @@ fontSelector.addEventListener("change", (e) => {
 weightSelector.addEventListener("change", autoResizeText);
 
 downloadBtn.addEventListener("click", async () => {
-  // 1) لودر
+
+  /* — ۱) نمایش لودر — */
   loader.style.display = "flex";
   remain.textContent = "";
 
-  // 2) تخمین زمان
+  /* تخمین زمان باقی‌مانده */
   let est = loadTimes.length
-          ? loadTimes.reduce((a,b)=>a+b,0)/loadTimes.length
-          : 3;
+    ? loadTimes.reduce((a, b) => a + b, 0) / loadTimes.length
+    : 3;
   let left = est;
-  const tick = setInterval(()=>{
-    left = Math.max(left-0.1,0);
+  const tick = setInterval(() => {
+    left = Math.max(left - 0.1, 0);
     remain.textContent = left.toFixed(1) + " ثانیه";
-  },100);
+  }, 100);
 
   try {
-    // 3) تولید تصویر
+    /* — ۲) تولید بوم — */
     const t0 = performance.now();
     const canvas = await html2canvas(document.getElementById("output"), {
-  backgroundColor: "#ffffff",   // ← سفیدِ مطلق
-  useCORS: true,
-  allowTaint: true,
-  scale: 1,
-  ignoreElements: el => el.id === "downloadBtn"
-});
-
+      backgroundColor: "#ffffff",
+      scale: window.devicePixelRatio < 2 ? 1 : 0.8,   // مقیاس بهینه موبایل
+      ignoreElements: el => el.id === "downloadBtn",
+      useCORS: true, allowTaint: true
+    });
     const t1 = performance.now();
     clearInterval(tick);
-    loadTimes.push((t1-t0)/1000);
+    loadTimes.push((t1 - t0) / 1000);
 
-    // 4) ساخت Blob و لینک
-    canvas.toBlob(blob=>{
-      if(!blob){ remain.textContent="خطا 😞"; return; }
+    /* — ۳) تبدیل به Blob و دانلود — */
+    canvas.toBlob(blob => {
+      if (!blob) { remain.textContent = "خطا 😞"; return; }
 
-      const url   = URL.createObjectURL(blob);
-      const name  = `text-design-${Date.now()}.png`;
-      const link  = document.createElement("a");
-      link.href      = url;
-      link.download  = name;
-      document.body.appendChild(link);         // ← لازم برای موبایل
+      const url  = URL.createObjectURL(blob);
+      const name = `text-design-${Date.now()}.png`;
 
-      const isiOS = /iP(hone|od|ad)/.test(navigator.userAgent);
-      if(isiOS){
-        window.open(url,"_blank");
-      }else{
+      if (/Mobi|Android/i.test(navigator.userAgent)) {
+        mobileDownload(url, name);           // ← تابع کمکی
+      } else {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = name;
+        document.body.appendChild(link);     // مهم برای امنیت مرورگر
         link.click();
       }
 
-      // تأخیر کوتاه، بعد پاکسازی
-      setTimeout(()=>{
-        document.body.removeChild(link);
+      /* پاکسازی دیرتر (۱۰ ثانیه) */
+      setTimeout(() => {
         URL.revokeObjectURL(url);
-      }, 1500);
+      }, 10000);
     });
 
-    remain.textContent = `آماده شد در ${( (t1-t0)/1000 ).toFixed(1)} ثانیه`;
-  } catch(err){
+    remain.textContent = `آماده شد در ${( (performance.now() - t0) / 1000 ).toFixed(1)} ثانیه`;
+
+  } catch (err) {
     console.error(err);
     remain.textContent = "خطا در تولید تصویر 😞";
+  } finally {
+    /* — ۴) مخفی‌کردن لودر — */
+    setTimeout(() => {
+      loader.style.display = "none";
+      remain.textContent = "";
+    }, 2500);
   }
-
-  // 5) مخفی کردن لودر
-  setTimeout(()=>{
-    loader.style.display="none";
-    remain.textContent="";
-  }, 2500);
 });
+
 
 
 
