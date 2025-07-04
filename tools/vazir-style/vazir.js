@@ -217,71 +217,103 @@ fontSelector.addEventListener("change", (e) => {
 
 weightSelector.addEventListener("change", autoResizeText);
 
-downloadBtn.addEventListener("click", async () => {
+function showMobileFallback(url) {
+  const fallback = document.getElementById('mobileFallback');
+  const link = fallback.querySelector('a');
+  
+  link.href = url;
+  link.textContent = "لینک دانلود تصویر";
+  fallback.style.display = 'block';
 
-  /* — ۱) نمایش لودر — */
+  // پنهان کردن خودکار بعد از 30 ثانیه
+  setTimeout(() => {
+    fallback.style.display = 'none';
+  }, 30000);
+}
+
+// بستن دستی فال بک
+document.getElementById('closeFallback').addEventListener('click', () => {
+  document.getElementById('mobileFallback').style.display = 'none';
+});
+
+
+downloadBtn.addEventListener("click", async () => {
   loader.style.display = "flex";
   remain.textContent = "";
 
-  /* تخمین زمان باقی‌مانده */
-  let est = loadTimes.length
-    ? loadTimes.reduce((a, b) => a + b, 0) / loadTimes.length
-    : 3;
-  let left = est;
-  const tick = setInterval(() => {
-    left = Math.max(left - 0.1, 0);
-    remain.textContent = left.toFixed(1) + " ثانیه";
-  }, 100);
-
   try {
-    /* — ۲) تولید بوم — */
-    const t0 = performance.now();
     const canvas = await html2canvas(document.getElementById("output"), {
       backgroundColor: "#ffffff",
-      scale: window.devicePixelRatio < 2 ? 1 : 0.8,   // مقیاس بهینه موبایل
+      scale: window.devicePixelRatio < 2 ? 1 : 0.8,
       ignoreElements: el => el.id === "downloadBtn",
-      useCORS: true, allowTaint: true
+      useCORS: true,
+      allowTaint: true
     });
-    const t1 = performance.now();
-    clearInterval(tick);
-    loadTimes.push((t1 - t0) / 1000);
 
-    /* — ۳) تبدیل به Blob و دانلود — */
     canvas.toBlob(blob => {
-      if (!blob) { remain.textContent = "خطا 😞"; return; }
+      if(!blob) {
+        remain.textContent = "خطا در ایجاد فایل 😞";
+        return;
+      }
 
-      const url  = URL.createObjectURL(blob);
+      const url = URL.createObjectURL(blob);
       const name = `text-design-${Date.now()}.png`;
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-      if (/Mobi|Android/i.test(navigator.userAgent)) {
-        mobileDownload(url, name);           // ← تابع کمکی
+      if (isMobile) {
+        try {
+          // تکنیک ۱: iframe
+          const iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.src = url;
+          document.body.appendChild(iframe);
+
+          // تکنیک ۲: باز کردن در تب جدید
+          setTimeout(() => {
+            try {
+              const newWindow = window.open(url, '_blank');
+              if (!newWindow || newWindow.closed) {
+                showMobileFallback(url); // تکنیک ۳: لینک fallback
+              }
+            } catch (e) {
+              showMobileFallback(url);
+            }
+          }, 500);
+        } catch (e) {
+          showMobileFallback(url);
+        }
       } else {
         const link = document.createElement("a");
         link.href = url;
         link.download = name;
-        document.body.appendChild(link);     // مهم برای امنیت مرورگر
+        document.body.appendChild(link);
         link.click();
+        setTimeout(() => {
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        }, 1000);
       }
 
-      /* پاکسازی دیرتر (۱۰ ثانیه) */
-      setTimeout(() => {
-        URL.revokeObjectURL(url);
-      }, 10000);
+      // پاکسازی برای موبایل با تاخیر بیشتر
+      if (isMobile) {
+        setTimeout(() => {
+          URL.revokeObjectURL(url);
+        }, 30000);
+      }
+
+      remain.textContent = "تصویر آماده است 😊";
+
     });
-
-    remain.textContent = `آماده شد در ${( (performance.now() - t0) / 1000 ).toFixed(1)} ثانیه`;
-
   } catch (err) {
     console.error(err);
-    remain.textContent = "خطا در تولید تصویر 😞";
+    remain.textContent = "خطا 😞";
   } finally {
-    /* — ۴) مخفی‌کردن لودر — */
     setTimeout(() => {
       loader.style.display = "none";
-      remain.textContent = "";
     }, 2500);
   }
 });
+
 
 
 
