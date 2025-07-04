@@ -82,7 +82,6 @@ textarea {
     text-align: justify;
     line-height: 1.5;
     padding: 15px; /* فضای داخلی اضافه کنید */
-    box-sizing: border-box; /* اطمینان از محاسبه صحیح اندازه‌ها *
 }
 
 .text-content {
