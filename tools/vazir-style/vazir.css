@@ -877,7 +877,7 @@ textarea {
   #loader {
     position: fixed; inset: 0; display:none; align-items:center;
     justify-content:center; background:#0008; color:#fff; font-size:1.2rem;
-    z-index: 9999;
+    z-index: 10000;
   }
 
 /* ——— Vazir Code ——— */
