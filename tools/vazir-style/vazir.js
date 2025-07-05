@@ -371,9 +371,9 @@ const jalaliMonths = [
     'دی', 'بهمن', 'اسفند'
 ];
 
-// دریافت آخرین تاریخ commit از GitHub
+// دریافت آخرین تاریخ commit برای پوشه خاص
 function updateLastCommitDate() {
-    fetch('https://api.github.com/repos/iweiu1005/woodywork/commits?per_page=1')
+    fetch('https://api.github.com/repos/iweiu1005/woodywork/commits?path=tools/vazir-style&per_page=1')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -386,14 +386,17 @@ function updateLastCommitDate() {
                 const dateStr = lastCommit.commit.author.date;
                 const date = new Date(dateStr);
                 
-                // زمان به وقت محلی ایران
-                const hours = date.getHours();
-                const minutes = date.getMinutes();
+                // تنظیم به وقت ایران (IRST: UTC+3:30 / IRDT: UTC+4:30)
+                const timezoneOffset = 3.5 * 60 * 60 * 1000; // UTC+3:30
+                const iranTime = new Date(date.getTime() + timezoneOffset);
+                
+                const hours = iranTime.getUTCHours();
+                const minutes = iranTime.getUTCMinutes();
                 
                 // تبدیل به تاریخ شمسی
-                const year = date.getFullYear();
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
+                const year = iranTime.getUTCFullYear();
+                const month = iranTime.getUTCMonth() + 1;
+                const day = iranTime.getUTCDate();
                 const jDate = gregorianToJalali(year, month, day);
                 
                 // قالب‌بندی خروجی
