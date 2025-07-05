@@ -341,3 +341,80 @@ document.getElementById("alignSelector").addEventListener("change", function () 
                 closeHowToUsePopup();
             }
         });        
+
+
+// تابع تبدیل تاریخ میلادی به شمسی
+function gregorianToJalali(gy, gm, gd) {
+    var g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+    var jy = (gy <= 1600) ? 0 : 979;
+    gy -= (gy <= 1600) ? 621 : 1600;
+    var gy2 = (gm > 2) ? (gy + 1) : gy;
+    var days = (365 * gy) + (parseInt((gy2 + 3) / 4)) - (parseInt((gy2 + 99) / 100)) + (parseInt((gy2 + 399) / 400)) - 80 + gd + g_d_m[gm - 1];
+    jy += 33 * (parseInt(days / 12053));
+    days %= 12053;
+    jy += 4 * (parseInt(days / 1461));
+    days %= 1461;
+    if (days > 365) {
+        jy += parseInt((days - 1) / 365);
+        days = (days - 1) % 365;
+    }
+    var jm = (days < 186) ? 1 + parseInt(days / 31) : 7 + parseInt((days - 186) / 30);
+    var jd = 1 + ((days < 186) ? (days % 31) : ((days - 186) % 30));
+    return [jy, jm, jd];
+}
+
+// نام ماه‌های شمسی
+const jalaliMonths = [
+    'فروردین', 'اردیبهشت', 'خرداد', 
+    'تیر', 'مرداد', 'شهریور', 
+    'مهر', 'آبان', 'آذر', 
+    'دی', 'بهمن', 'اسفند'
+];
+
+// دریافت آخرین تاریخ commit از GitHub
+function updateLastCommitDate() {
+    fetch('https://api.github.com/repos/iweiu1005/woodywork/commits?per_page=1')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(commits => {
+            if (commits && commits.length > 0) {
+                const lastCommit = commits[0];
+                const dateStr = lastCommit.commit.author.date;
+                const date = new Date(dateStr);
+                
+                // زمان به وقت محلی ایران
+                const hours = date.getHours();
+                const minutes = date.getMinutes();
+                
+                // تبدیل به تاریخ شمسی
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                const jDate = gregorianToJalali(year, month, day);
+                
+                // قالب‌بندی خروجی
+                const formattedDate = `آخرین بروز رسانی در ساعت ${hours}:${minutes} تاریخ ${jDate[2]} ${jalaliMonths[jDate[1] - 1]} ${jDate[0]}`;
+                
+                // به‌روزرسانی فوتر
+                const footerDate = document.getElementById('last-update');
+                if (footerDate) {
+                    footerDate.textContent = formattedDate;
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Failed to fetch last commit date:', error);
+            // در صورت خطا از تاریخ پیش‌فرض استفاده کنید
+            const footerDate = document.getElementById('last-update');
+            if (footerDate) {
+                footerDate.textContent = "آخرین بروز رسانی در ساعت 00:00 تاریخ 1 فروردین 1400";
+            }
+        });
+}
+
+// فراخوانی تابع پس از لود صفحه
+document.addEventListener('DOMContentLoaded', updateLastCommitDate);
