@@ -1,0 +1,14 @@
+comments:
+  allowedFields: ["name", "email", "message", "type"]
+  requiredFields: ["name", "message"]
+  branch: "main"
+  path: "_data/comments"
+  format: "yaml"
+  moderation: true
+  name: "comment"
+  email: false
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "iso8601"
