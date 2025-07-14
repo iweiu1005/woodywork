@@ -56,7 +56,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let loadedCount = 0;
   const progressBar = document.getElementById("progress-bar");
 
-  if (!progressBar) return; // اگر وجود نداشت چیزی نشون نده
+  if (!progressBar) return;
 
   images.forEach((img) => {
     if (img.complete) {
@@ -74,8 +74,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (loadedCount === images.length) {
       setTimeout(() => {
-        // بعد از کامل شدن نوار، ناپدید بشه یا بمونه؟ این اختیاریه:
-        // document.getElementById("progress-bar-container").style.display = "none";
+        document.getElementById("progress-bar-container").style.display = "none";
       }, 1000);
     }
   }
