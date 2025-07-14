@@ -242,9 +242,9 @@ width: max-content;
 #progress-bar-container {
   width: 100%;
   max-width: 600px;
-  height: 10px;
+  height: 12px;
   background-color: #e0e0e0;
-  border-radius: 5px;
+  border-radius: 6px;
   margin: 10px auto 20px auto;
   overflow: hidden;
 }
@@ -252,6 +252,28 @@ width: max-content;
 #progress-bar {
   height: 100%;
   width: 0%;
-  background-color: #4caf50;
+  border-radius: 6px;
+  background: linear-gradient(
+    270deg,
+    #f9c5d1,
+    #fceabb,
+    #c1d3fe,
+    #a7d7c5,
+    #f9c5d1
+  );
+  background-size: 1000% 1000%;
+  animation: gradientShift 10s ease infinite;
   transition: width 0.3s ease;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
