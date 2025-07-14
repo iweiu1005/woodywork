@@ -238,32 +238,3 @@ width: max-content;
   .nav-links { gap: 0.6rem; font-size: 0.75rem; }
   .dropdown a { font-size: 0.74rem; }
 }
-
-#gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
-
-.gallery-img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-#loadMoreBtn {
-  margin: 20px auto;
-  display: block;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-#loader img {
-  display: block;
-  width: 60px;
-  margin: 20px auto;
-}
