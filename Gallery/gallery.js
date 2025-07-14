@@ -51,3 +51,32 @@ buttons.forEach(btn => {
   });
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll("img");
+  let loadedCount = 0;
+  const progressBar = document.getElementById("progress-bar");
+
+  if (!progressBar) return; // اگر وجود نداشت چیزی نشون نده
+
+  images.forEach((img) => {
+    if (img.complete) {
+      incrementProgress();
+    } else {
+      img.addEventListener("load", incrementProgress);
+      img.addEventListener("error", incrementProgress);
+    }
+  });
+
+  function incrementProgress() {
+    loadedCount++;
+    const percent = Math.round((loadedCount / images.length) * 100);
+    progressBar.style.width = percent + "%";
+
+    if (loadedCount === images.length) {
+      setTimeout(() => {
+        // بعد از کامل شدن نوار، ناپدید بشه یا بمونه؟ این اختیاریه:
+        // document.getElementById("progress-bar-container").style.display = "none";
+      }, 1000);
+    }
+  }
+});
