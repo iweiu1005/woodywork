@@ -51,36 +51,3 @@ buttons.forEach(btn => {
   });
 });
 
-// --- لود تدریجی ---
-const allImages = document.querySelectorAll(".gallery-img");
-  const loadMoreBtn = document.getElementById("loadMoreBtn");
-  const loader = document.getElementById("loader");
-
-  const batchSize = 10;
-  let currentIndex = 0;
-
-  // اول همه عکس‌ها رو مخفی کن
-  allImages.forEach(img => img.style.display = 'none');
-
-  function showNextBatch() {
-    loader.classList.remove("hidden");
-
-    setTimeout(() => {
-      for (let i = 0; i < batchSize && currentIndex < allImages.length; i++, currentIndex++) {
-        allImages[currentIndex].style.display = 'block';
-      }
-
-      loader.classList.add("hidden");
-
-      if (currentIndex >= allImages.length) {
-        loadMoreBtn.style.display = 'none';
-      }
-    }, 200); // اختیاری: تأخیر برای لودر
-  }
-
-  // بار اول: ۱۰ عکس اول نشون بده
-  showNextBatch();
-
-  // وقتی دکمه کلیک شد
-  loadMoreBtn.addEventListener("click", showNextBatch);
-    
