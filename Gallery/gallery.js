@@ -52,45 +52,35 @@ buttons.forEach(btn => {
 });
 
 // --- لود تدریجی ---
-const BATCH = 5;                            // تعداد عکس در هر نوبت
-const imgs   = [...document.querySelectorAll('.gallery a')];
-const loader = document.getElementById('loader');
-let index    = 0;                           // عکس‌هایی که تا حالا نشان داده‌ایم
+const allImages = document.querySelectorAll(".gallery-img");
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
+  const loader = document.getElementById("loader");
 
-// ابتدا همه را مخفی می‌کنیم
-imgs.forEach((el, i) => {
-  if (i >= BATCH) el.classList.add('hidden');
-});
-index = BATCH;
+  const batchSize = 10;
+  let currentIndex = 0;
 
-// وقتی Sentinel دیده شد، سری بعدی را باز کن
-const sentinel = document.getElementById('sentinel');
-const io = new IntersectionObserver(async ([entry]) => {
-  if (!entry.isIntersecting) return;
-  // اگر همهٔ تصاویر قبلاً لود شده‌اند → کار تمام
-  if (index >= imgs.length) {
-    loader.classList.add('hidden');
-    io.disconnect();
-    return;
+  // اول همه عکس‌ها رو مخفی کن
+  allImages.forEach(img => img.style.display = 'none');
+
+  function showNextBatch() {
+    loader.classList.remove("hidden");
+
+    setTimeout(() => {
+      for (let i = 0; i < batchSize && currentIndex < allImages.length; i++, currentIndex++) {
+        allImages[currentIndex].style.display = 'block';
+      }
+
+      loader.classList.add("hidden");
+
+      if (currentIndex >= allImages.length) {
+        loadMoreBtn.style.display = 'none';
+      }
+    }, 200); // اختیاری: تأخیر برای لودر
   }
 
-  // ۱) لودر را نشان بده
-  loader.classList.remove('hidden');
+  // بار اول: ۱۰ عکس اول نشون بده
+  showNextBatch();
 
-  // ۲) کمی مکث (شبیه درخواست شبکه)
-  await new Promise(r => setTimeout(r, 400));  // ۰٫۴ ثانیه دلخواه
-
-  // ۳) سری بعدی عکس‌ها را نمایان کن
-  const next = imgs.slice(index, index + BATCH);
-  next.forEach(el => el.classList.remove('hidden'));
-  index += BATCH;
-
-  // ۴) لودر را مخفی کن
-  loader.classList.add('hidden');
-}, {
-  rootMargin: '200px 0px'                     // کمی قبل از رسیدن ته صفحه
-});
-
-io.observe(sentinel);
-
+  // وقتی دکمه کلیک شد
+  loadMoreBtn.addEventListener("click", showNextBatch);
     
