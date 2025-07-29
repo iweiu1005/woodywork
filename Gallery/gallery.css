@@ -49,7 +49,6 @@
     .gallery a {
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
       display: block;
     }
 
@@ -244,7 +243,6 @@ width: max-content;
   max-width: 250px;
   height: 12px;
   background-color: #f6f6f6;
-  border-radius: 6px;
   margin: 10px auto 20px auto;
   overflow: hidden;
 }
@@ -252,7 +250,6 @@ width: max-content;
 #progress-bar {
   height: 100%;
   width: 0%;
-  border-radius: 6px;
   background: linear-gradient(
     270deg,
     #f9c5d1,
