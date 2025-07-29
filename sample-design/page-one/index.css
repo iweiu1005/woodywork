@@ -12,6 +12,7 @@ body {
   flex-direction: column;
   overflow: hidden;
 }
+
 body::before{
   content: "";
   position: absolute;
@@ -116,6 +117,7 @@ a:hover{
 .sidebar {
   display: flex;
   flex-direction: column;
+  border-radius: 15px;
   font-size: 9px;
   width: 200px;
   align-items: center;
