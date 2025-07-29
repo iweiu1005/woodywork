@@ -2,10 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;   /* ارتفاع کامل صفحه */
-  background: url(https://biaupload.com/do.php?imgf=org-993fcd48b8961.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  min-height: 100vh;   /* ارتفاع کامل صفحه */t;
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 20px;
   margin: 0;
@@ -13,6 +10,15 @@ body {
   color: #333;
   line-height: 1.6;
   flex-direction: column;
+}
+body::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(https://biaupload.com/do.php?imgf=org-993fcd48b8961.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
 p {
