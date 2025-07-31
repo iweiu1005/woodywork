@@ -3,10 +3,10 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;   /* ارتفاع کامل صفحه */t;
-  font-family: 'Pixelify Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 20px;
   margin: 0;
-  background: url(https://biaupload.com/do.php?imgf=org-b0e26627de111.jpg);
+  background-color: #fff;
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0;
@@ -25,23 +25,24 @@ p {
 }
 
 a {
-  color: #27c93f;
+  color: #ff5f56;
+  text-decoration:none;
+  padding: 0px 5px 0px 5px;
 }
 
 a:hover{
-  font-style: italic;
+    background-color: #ffe9e9;
 }
 ::selection{
-  background-color: #b9ffd0;
-  color: #27c93f;
+  background-color: #ffe9e9;
+  color: #ff5f56;
 }
 
 .window {
-  max-width: 700px;
-  width: 550px;
+  max-width: 600px;
+  width: 500px;
   background: white;
   border-radius: 20px;
-  box-shadow: 1px 20px 29px #0000002e;
   overflow: hidden;
   padding: 5px 0px 5px 0px;
 }
@@ -83,7 +84,6 @@ a:hover{
   width: -moz-available;
   width: fill-available;
   padding: 3px 10px;
-  background: linear-gradient(127deg, #faecff, #dff5ff, #ffecec);
   border-radius: 6px;
 }
 
@@ -93,6 +93,7 @@ a:hover{
 }
 
 .title {
+    font-size: 12px;
   margin-left: 10px;
 }
 
@@ -101,6 +102,11 @@ a:hover{
   font-size: 12px;
   text-decoration: none;
   margin-left: 6px;
+}
+
+.header-right a:hover{
+    color: #ff5f56;
+    background-color: #fff;
 }
 
 .window-body {
@@ -133,10 +139,13 @@ a:hover{
 }
 
 .section-title {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
-  margin-bottom: 5px;
-  border-bottom: 1px dashed #999;
+  margin-bottom: 10px;
+  border: 1px solid #ffbd2e;
+  padding-left: 5px;
+  border-radius: 5px;
+  color: #ffbd2e;
 }
 
 .main {
@@ -154,6 +163,22 @@ a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+.gallery-img{
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+    gap: 5px;
+}
+
+.gallery-img img {
+    width: 30%;
 }
 
 .card-img {
@@ -182,9 +207,15 @@ a:hover{
   p {
     font-size: 6px;
   }
+  .header-right a {
+    font-size: 8px;
+  }
+  .title{
+    font-size: 8px;
+  }
 
   .window {
-    width: 93%;
+    width: 85%;
     margin: 0 auto;
   }
 
