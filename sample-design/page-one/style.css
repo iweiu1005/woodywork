@@ -2,7 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 95vh;   /* ارتفاع کامل صفحه */t;
+  min-height: 100vh;   /* ارتفاع کامل صفحه */t;
   font-family: "Noto Sans", sans-serif;
   font-size: 20px;
   margin: 0;
@@ -139,13 +139,18 @@ a:hover{
 }
 
 .section-title {
+  position: relative;
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 10px;
-  border: 1px solid #ffbd2e;
   padding-left: 5px;
   border-radius: 5px;
   color: #ffbd2e;
+}
+
+.section-title::before{
+  content: url("https://iweiu.storage.c2.liara.space/gif/3X4DIIRTITLD3KH5P22IIY3YKCNY3IKK.gif");
+  margin-right: 4px;
 }
 
 .main {
@@ -166,19 +171,26 @@ a:hover{
 }
 
 
-.gallery-img{
-    display: flex;
-    gap: 5px;
-    justify-content: space-between;
-    width: -webkit-fill-available;
-    width: -webkit-fill-available;
-    width: -moz-available;
-    width: fill-available;
-    gap: 5px;
+.gallery-img {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  width: -webkit-fill-available;
+  gap: 5px;
+  justify-content: space-between;
 }
 
+.img-box{
+  width: 65px;
+  border-radius: 6px;
+  object-fit: cover;
+  height: 65px;
+  display: flex;
+  overflow: hidden;
+}
 .gallery-img img {
-    width: 30%;
+  margin-top: 0;
+  width: 100%;
 }
 
 .card-img {
@@ -228,6 +240,11 @@ a:hover{
   }
   .main {
     width: 100%;
+  }
+  
+  .img-box{
+    width: 50px;
+    height: 50px;
   }
 
   .window-header {
