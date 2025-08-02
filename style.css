@@ -1,0 +1,107 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;   /* ارتفاع کامل صفحه */t;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 20px;
+  margin: 0;
+  background-color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+p {  
+  text-align: justify; 
+  padding: 0px 18px;
+  font-size: 9px;
+  text-align: justify;
+  width: 88%;
+}
+
+a {
+  color: #ff5f56;
+  text-decoration:none;
+  padding: 0px 5px 0px 5px;
+}
+
+a:hover{
+    background-color: #ffe9e9;
+}
+::selection{
+  background-color: #ffe9e9;
+  color: #ff5f56;
+}
+
+.window {
+  display: flex; 
+  position: relative; 
+  flex-direction: column; 
+  align-items: center;
+  max-width: 600px;
+  width: 300px;
+  background: white;
+  padding: 5px 0px 5px 0px;
+}
+
+.menu {
+  text-align: right; 
+}
+
+.empty {
+  height: 15px; 
+  background-color: #1d1210; 
+  width: 90%;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 220px;
+  padding: 15px 10px;
+}
+
+.highlight {
+  background: #f9f5c0;
+}
+
+.danger {
+  background: #ffe9e9;
+  color: darkred;
+  font-weight: bold;
+}
+
+/* ————— RESPONSIVE ————— */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  p {
+    font-size: 8px;
+  }
+  
+  .window {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .window-body {
+    gap: 15px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+}
