@@ -49,6 +49,18 @@ a:hover{
   padding: 5px 0px 5px 0px;
 }
 
+.other-link-box{
+  display: flex; flex-wrap: wrap;
+}
+.other-link a{
+  display: contents;
+}
+.other-link a:hover{
+  background: none;
+}
+.other-link img{
+  height: 25px;
+}
 .menu {
   text-align: right; 
 }
