@@ -50,9 +50,9 @@ a:hover{
 }
 
 .other-link-box{
-  display: flex; flex-wrap: wrap;
+  display: flex; flex-wrap: wrap; gap: 2px; padding: 0px 15px;
 }
-.other-link a{
+a.other-link{
   display: contents;
 }
 .other-link a:hover{
