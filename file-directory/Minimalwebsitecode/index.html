@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دکمه‌های کپی متن</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>کد صفحه مینیمال</h1>
+        <div class="btn-group">
+            <button class="copy-btn btn-1" onclick="copyText(1)">html</button>
+            <button class="copy-btn btn-2" onclick="copyText(2)">style</button>
+            <button class="copy-btn btn-3" onclick="copyText(3)">script</button>
+        </div>
+    </div>
+
+    <!-- متن‌های مخفی برای کپی -->
+    <div id="hiddenText1" class="hidden-text">
+
+      <!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!-- عنوان / عکس و توضیح پیشنمایش لینک  -->
+      <meta property="og:title" content="woody work !" />
+      <meta property="og:image" content="https://biaupload.com/do.php?imgf=org-c310a777b03b1.jpg" />
+      <meta property="og:description" content="all about me in this web.." />
+      <!-- آیکون برای وبسایت -->
+      <link href="https://uploadkon.ir/uploads/be3712_25ico-2.png" rel="shortcut icon" />
+      <!-- عنوان وبسایت -->
+      <title>woody work</title>
+      <!-- Style Link -->
+      <link rel="stylesheet" href="style.css" />
+      <!-- فونت های گوگل -->
+      <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+   </head>
+   <body>
+      <div class="window">
+         <!-- منوها --> 
+         <p class="menu">
+            <a href="#">home</a> ✦ <a href="#my-link">links</a> ✦ <a href="#my-detail">about</a> ✦ <a href="/misc">misc.</a>
+         </p>
+         <!-- بخش اصلی -->
+         <img src="https://biaupload.com/do.php?imgf=org-c310a777b03b1.jpg" style="width: 266px;" />
+         <p style="padding: 0px 18px;">
+            I want to be worshipped. Not just loved... I want someone to look at me and say, 'Without you, my life is incomplete.
+            <br />
+            <span class="highlight">— 염미정</span>
+         </p>
+         <!-- بخش لینک‌ها (مخفی پیش‌فرض) -->
+         <div class="section" id="my-link" style="display: none;">
+            <div class="empty"></div>
+            <p class="links">
+               <strong>My Links :</strong><br>
+            <div class="other-link-box" >
+               <a href="https://balteredit.ir/" class="other-link"><img src="/file-directory/link/balter edit web.png" ></a>
+               <a href="https://ko-fi.com/woodywork" class="other-link"><img src="/file-directory/link/support.png" ></a>                    
+            </div>
+            </p>
+         </div>
+         <!-- بخش درباره من (مخفی پیش‌فرض) -->
+         <div class="section" id="my-detail" style="display: none;">
+            <div class="empty"></div>
+            <p class="details">
+               <strong>About me :</strong><br />
+               call me woody !<br />
+               <span class="highlight">She/Her</span>
+               <br />
+               mbti / zodiac: INFP ✿ Libra <br />
+               bd: sep 2000 <br />
+               country: iran <br />
+               lan: turk / persian (en not good -_-) <br />
+               Graphic design, Motion Flyer, FanArt.. <br />
+               Figma, Ph, Ae, Csp 𐙚ᅠ
+            </p>
+         </div>
+      </div>
+      <script src="script.js" ></script>
+   </body>
+</html>
+      
+    </div>
+    <div id="hiddenText2" class="hidden-text">
+      
+      body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: "Noto Sans", sans-serif;
+	font-size: 20px;
+	margin: 0;
+	background-color: #fff;
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding: 0;
+	color: #333;
+	line-height: 1.6;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+p {
+	text-align: justify;
+	padding: 0px 18px;
+	font-size: 9px;
+	text-align: justify;
+	width: 88%;
+}
+
+a {
+	color: #ff5f56;
+	text-decoration: none;
+	padding: 0px 5px 0px 5px;
+}
+
+a:hover {
+	background-color: #ffe9e9;
+}
+
+::selection {
+	background-color: #ffe9e9;
+	color: #ff5f56;
+}
+
+.window {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	align-items: center;
+	max-width: 600px;
+	width: 300px;
+	background: white;
+	padding: 5px 0px 5px 0px;
+}
+
+.other-link-box {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	padding: 0px 15px;
+}
+
+a.other-link {
+	display: contents;
+}
+
+.other-link a:hover {
+	background: none;
+}
+
+.other-link img {
+	height: 25px;
+}
+
+.menu {
+	text-align: right;
+}
+
+.empty {
+	height: 15px;
+	background-color: #1d1210;
+	width: 90%;
+}
+
+.section {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+}
+
+.flex-column-center {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+.main {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	width: 220px;
+	padding: 15px 10px;
+}
+
+.highlight {
+	background: #f9f5c0;
+}
+
+
+/* ————— RESPONSIVE ————— */
+@media (max-width: 768px) {
+	body {
+		padding: 20px;
+	}
+
+	p {
+		font-size: 8px;
+	}
+
+	.window {
+		margin: 0 auto;
+	}
+
+	.window-body {
+		gap: 15px;
+	}
+
+}
+
+@media (max-width: 480px) {
+	body {
+		padding: 10px;
+	}
+
+}
+      
+    </div>
+    <div id="hiddenText3" class="hidden-text">
+      
+      function showSectionFromHash() {
+    const hash = location.hash; 
+    const sections = document.querySelectorAll(".section"); // همه‌ی بخش‌های مخفی‌شدنی
+    sections.forEach(section => {
+      section.style.display = "none";
+      section.classList.remove("flex-column-center");
+    });
+
+    if (hash) {
+      const activeSection = document.querySelector(hash);
+      if (activeSection) {
+        activeSection.style.display = "flex";
+        activeSection.classList.add("flex-column-center"); 
+      }
+    }
+  }
+
+  showSectionFromHash();
+
+  window.addEventListener("hashchange", showSectionFromHash);
+      
+    </div>
+
+    <script>
+        function copyText(btnNumber) {
+            // انتخاب متن متناظر با دکمه
+            const hiddenText = document.getElementById(`hiddenText${btnNumber}`);
+            const textToCopy = hiddenText.textContent;
+            
+            // ایجاد یک عنصر موقت برای کپی
+            const textarea = document.createElement("textarea");
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            
+            // اجرای دستور کپی
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            
+            // تغییر ظاهر دکمه به نشانه کپی موفق
+            const copyButton = document.querySelector(`.btn-${btnNumber}`);
+            const originalText = copyButton.textContent;
+            copyButton.textContent = "کپی شد!";
+            copyButton.classList.add("copied");
+            
+            // بازگرداندن دکمه به حالت اولیه بعد از 2 ثانیه
+            setTimeout(() => {
+                copyButton.textContent = originalText;
+                copyButton.classList.remove("copied");
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
