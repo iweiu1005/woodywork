@@ -11,6 +11,42 @@ const loadTimes = [];        // برای تخمین دفعات بعد
 let resizeTimeout;
 let lastValidSize;
 
+// بارگذاری اطلاعات فونت
+async function loadFontData() {
+    try {
+        const response = await fetch('fonts.json');
+        const fontData = await response.json();
+        window.fontWeights = Object.fromEntries(
+            Object.entries(fontData).map(([name, data]) => [name, data.weights])
+        );
+        // پس از بارگذاری، مقادیر اولیه را تنظیم کنید
+        updateWeights(fontSelector.value);
+    } catch (error) {
+        console.error('Failed to load font data:', error);
+        // استفاده از داده‌های پیش‌فرض
+        window.fontWeights = {
+            VazirCodeHack: ["400"],
+            "Noto Sans Arabic": ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+            Rubik: ["300", "400", "500", "600", "700"],
+            Amiri: ["400", "700"],
+            "Fira Code": ["300", "400", "500", "600", "700"],
+            Arial: ["400"],
+            "Dancing Script": ["400", "700"],
+            Karla: ["400", "700"],
+            "Playfair Display": ["400", "700"],
+            Pacifico: ["400"],
+            Caveat: ["400..700"],
+            Lalezar: ["400"],
+            Marhey: ["300..700"],
+            Handjet: ["100..900"],
+        };
+        updateWeights(fontSelector.value);
+    }
+}
+
+// فراخوانی تابع بارگذاری فونت‌ها
+loadFontData();
+
 // تنظیمات فونت و وزن
 const fontWeights = {
     VazirCodeHack: ["400"],
@@ -29,6 +65,38 @@ const fontWeights = {
     Handjet: ["100..900"],
 };
 
+
+// ایجاد تابع دبافان
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// ایجاد نسخه دبافان شده از توابع
+const debouncedResize = debounce(autoResizeText, 100);
+
+// رویدادها
+input.addEventListener("input", (e) => {
+    let text = e.target.value;
+
+    // تبدیل کدهای رنگی
+    let parsedText = parseCustomTags(text);
+
+    // نمایش خروجی
+    output.innerHTML = parsedText;
+
+    debouncedResize(); // جایگزین setTimeout قبلی
+});
+
+// همچنین برای event resize پنجره:
+window.addEventListener('resize', debouncedResize);
 
 /* —— دانلود سازگار با موبایل —— */
 function mobileDownload(url, filename) {
@@ -61,13 +129,17 @@ function mobileDownload(url, filename) {
 function parseCustomTags(text) {
     return text
         // رنگ (همچنان از BBCode-style)
-        .replace(/\[color=(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\](.*?)\[\/color\]/g, (match, color, content) => {
+        .replace(/\[color=(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\](.*?)\[\/color\]/gi, (match, color, content) => {
             return `<span style="color: ${color};">${content}</span>`;
         })
-        // بولد: **text**
-        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-        // ایتالیک: *text*
-        .replace(/\*(.*?)\*/g, "<em>$1</em>");
+        // بولد: **text** یا __text__
+        .replace(/(\*\*|__)(.*?)\1/g, "<strong>$2</strong>")
+        // ایتالیک: *text* یا _text_
+        .replace(/(\*|_)(.*?)\1/g, "<em>$2</em>")
+        // زیرخط: ~~text~~
+        .replace(/~~(.*?)~~/g, "<u>$1</u>")
+        // خط Through: --text--
+        .replace(/--(.*?)--/g, "<s>$1</s>");
 }
 
 
@@ -104,22 +176,27 @@ function autoResizeText() {
     output.style.fontWeight = selectedWeight;
     output.style.fontFamily = fontSelector.value;
 
-    let fontSize = 120;
     const parent = output.parentElement;
     const isMobile = window.matchMedia("(max-width: 300px)").matches;
-    const minFontSize = isMobile ? 6 : 8;
+    let minFontSize = isMobile ? 6 : 8;
+    let maxFontSize = 120;
+    let optimalSize = minFontSize;
 
-    while (fontSize >= minFontSize) {
-        output.style.fontSize = `${fontSize}px`;
+    while (minFontSize <= maxFontSize) {
+        const midSize = Math.floor((minFontSize + maxFontSize) / 2);
+        output.style.fontSize = `${midSize}px`;
+        
         if (output.scrollHeight <= parent.clientHeight) {
-            lastValidSize = fontSize;
-            break;
+            optimalSize = midSize;
+            minFontSize = midSize + 1;
+        } else {
+            maxFontSize = midSize - 1;
         }
-        fontSize--;
     }
 
-    output.style.fontSize = `${lastValidSize}px`;
+    output.style.fontSize = `${optimalSize}px`;
     output.style.overflowY = output.scrollHeight > parent.clientHeight ? "auto" : "hidden";
+    lastValidSize = optimalSize;
 }
 
 // مقداردهی اولیه
@@ -243,7 +320,7 @@ downloadBtn.addEventListener("click", async () => {
 
   try {
     const canvas = await html2canvas(document.getElementById("output"), {
-      backgroundColor: null ,
+      backgroundColor: null,
       scale: window.devicePixelRatio < 2 ? 1 : 0.8,
       ignoreElements: el => el.id === "downloadBtn",
       useCORS: true,
@@ -279,6 +356,14 @@ downloadBtn.addEventListener("click", async () => {
               showMobileFallback(url);
             }
           }, 500);
+          
+          // آزاد کردن منابع بعد از 30 ثانیه
+          setTimeout(() => {
+            URL.revokeObjectURL(url);
+            if (iframe && iframe.parentNode) {
+              document.body.removeChild(iframe);
+            }
+          }, 30000);
         } catch (e) {
           showMobileFallback(url);
         }
@@ -294,15 +379,7 @@ downloadBtn.addEventListener("click", async () => {
         }, 1000);
       }
 
-      // پاکسازی برای موبایل با تاخیر بیشتر
-      if (isMobile) {
-        setTimeout(() => {
-          URL.revokeObjectURL(url);
-        }, 30000);
-      }
-
       remain.textContent = "تصویر آماده است 😊";
-
     });
   } catch (err) {
     console.error(err);
@@ -313,7 +390,6 @@ downloadBtn.addEventListener("click", async () => {
     }, 2500);
   }
 });
-
 
 
 
@@ -343,6 +419,27 @@ document.getElementById("alignSelector").addEventListener("change", function () 
         });        
 
 
+// راهنمای دانلود برای موبایل
+function showMobileDownloadGuide() {
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        const guide = document.createElement('div');
+        guide.innerHTML = `
+            <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+                       background: #f8f9fa; padding: 10px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000;">
+                <p>برای ذخیره تصویر، دکمه منو (⋯) و سپس "Download" یا "ذخیره تصویر" را انتخاب کنید</p>
+                <button onclick="this.parentElement.style.display='none'">متوجه شدم</button>
+            </div>
+        `;
+        document.body.appendChild(guide);
+    }
+}
+
+// فراخوانی تابع پس از لود صفحه
+document.addEventListener('DOMContentLoaded', function() {
+    updateLastCommitDate();
+    showMobileDownloadGuide(); // اضافه کردن این خط
+});        
+
 // تابع تبدیل تاریخ میلادی به شمسی
 function gregorianToJalali(gy, gm, gd) {
     var g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
@@ -370,6 +467,7 @@ const jalaliMonths = [
     'مهر', 'آبان', 'آذر', 
     'دی', 'بهمن', 'اسفند'
 ];
+
 
 // دریافت آخرین تاریخ commit برای پوشه خاص
 function updateLastCommitDate() {

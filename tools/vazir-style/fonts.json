@@ -1,0 +1,16 @@
+{
+    "VazirCodeHack": {"weights": ["400"], "category": "monospace"},
+    "Noto Sans Arabic": {"weights": ["100", "200", "300", "400", "500", "600", "700", "800", "900"], "category": "sans-serif"},
+    "Rubik": {"weights": ["300", "400", "500", "600", "700"], "category": "sans-serif"},
+    "Amiri": {"weights": ["400", "700"], "category": "serif"},
+    "Fira Code": {"weights": ["300", "400", "500", "600", "700"], "category": "monospace"},
+    "Arial": {"weights": ["400"], "category": "sans-serif"},
+    "Dancing Script": {"weights": ["400", "700"], "category": "handwriting"},
+    "Karla": {"weights": ["400", "700"], "category": "sans-serif"},
+    "Playfair Display": {"weights": ["400", "700"], "category": "serif"},
+    "Pacifico": {"weights": ["400"], "category": "handwriting"},
+    "Caveat": {"weights": ["400..700"], "category": "handwriting"},
+    "Lalezar": {"weights": ["400"], "category": "display"},
+    "Marhey": {"weights": ["300..700"], "category": "display"},
+    "Handjet": {"weights": ["100..900"], "category": "display"}
+}
