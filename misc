@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Detail for your web (name / description for preview / img for preview)  -->
+        <meta property="og:title" content="woody work !" />
+        <meta property="og:description" content="all about me in this web.." />
+        <!-- Icon for your web -->
+        <link href="https://uploadkon.ir/uploads/9b8104_25img-two.jpg" rel="shortcut icon" />
+        <!-- Web Name -->
+        <title>more about woody. </title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Tanha" ,'Segoe UI',  Verdana, sans-serif;
+        }
+        
+        @font-face {
+  font-family: "Tanha";
+  src: url('https://iweiu.storage.c2.liara.space/font/tanha/Tanha-FD.eot');
+  src: url('https://iweiu.storage.c2.liara.space/font/tanha/Tanha-FD.woff') format('woff'),
+       url('https://iweiu.storage.c2.liara.space/font/tanha/Tanha-FD.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .header {
+            padding: 40px 0 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Toolbar Section */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .view-tabs {
+            display: flex;
+            gap: 24px;
+        }
+
+        .tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 0;
+        }
+
+        .tab.active {
+            color: #000;
+            border-bottom: 2px solid #007BFF;
+        }
+
+        .tab:not(.active) {
+            color: #666;
+        }
+
+        .tab-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #666;
+            transition: background-color 0.2s;
+        }
+
+        .action-icon:hover {
+            background-color: #f0f0f0;
+        }
+
+        .new-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .new-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Grid Section */
+        .grid-section {
+            padding: 32px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            height: fit-content;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: #000;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .avatar img {
+          object-fit: cover;
+          width: 100%;
+          }
+
+        .author {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .date {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .tag-blue {
+            background-color: #a4d9ff;
+            color: white;
+        }
+
+        .tag-red {
+            background-color: #ffa4a4;
+            color: white;
+        }
+        
+        .tag-yellow {
+            background-color: #ffec85;
+            color: white;
+        }
+        
+        .tag-green {
+            background-color: #a9ffa4;
+            color: white;
+        }
+
+        .tag-spec {
+            background-color: #e8a4ff;
+            color: white;
+        }
+
+        /* Footer Section */
+        .footer {
+            padding: 32px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .new-page-btn {
+            background-color: #F0F0F0;
+            color: #666;
+            border: none;
+            border-radius: 24px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .new-page-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Floating Element */
+        .floating-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            overflow: hidden;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .toolbar {
+                flex-direction: revert;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            
+            .toolbar-actions {
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Docs</h1>
+            <p dir="auto" style="pointer-events: auto;">All ABOUT WOODY<br></p>
+    <p dir="rtl" style="
+    text-align: right;
+">
+    بقول شعرا تخلصمون وودی هستش، به دیزاین و ادیت و طراحی و عکاسی و کلا چیزای جدید و جالب مثل هوش مصنوعی علاقه دارم و اینجا بخشی از کارهامو دسته بندی کردم بعنوان رزومه و معرفی کارام.. 
+
+</p>
+        </header>
+
+        <!-- Toolbar Section -->
+        <div class="toolbar">
+            <div class="view-tabs">
+                <div class="tab active">
+                    <div class="tab-icon">⁘</div>
+                    <span>Gallery View</span>
+                </div>
+            </div>
+            <div class="toolbar-actions">
+                
+                <button class="new-btn">
+                    New <span>↓</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Grid Section -->
+        <section class="grid-section">
+            <div class="grid">
+            
+                <!-- Card design -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://uploadkon.ir/uploads/4a8204_25preview-board-4.jpg">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title" style="pointer-events: auto;">
+                            <span>★</span>Design</div>                    
+                        <div class="card-description" style="direction: rtl; pointer-events: auto;">
+                        <p>بیشتر از 5 ساله که تقریبا بنظرم بصورت حرفه ای دارم دنبال میکنم محتواهای مربوط به دیزاین و ادیت رو و خیلی علاقه دارم به دیزاین وب، دیزاین کاور و تامنیل، دیزاین پوستر کلا به دنیای دیزاین علاقه دارم از هر مدلش.. درحال حاضر بیشتر با فتوشاپ، افترافکت، فیگما کار میکنم و تو گوشی با الایت موشن، ایبیس پینت، کپکات، پیکسللب، و... کار میکنم؛</p>
+<p>نمونه کارهامو بخوام بگم تو یجا متمرکز آپلود نمیکنم ولی میتونید توی پیج <a href="https://de.pinterest.com/editbalter/" target="_blank">پینترست</a> و <a href="https://www.deviantart.com/iweiu" target="_blank">دوینت آرتم</a> دیزاین کاور و تامنیلم رو ببینید.</p>
+<p>توی تلگرام هم جدیدا به دیزاین استیکر های ویدیو علاقمند شدم و خیلی برام جالب میاد.. برای این مدل نمونه هام میتونید <a href="https://t.me/WdesignX" target="_blank">این چنل تلگرامم</a> رو چک کنید.</p>
+<p>و یه نکته درشت اینکه، تو <a href="https://youtube.com/@editbalter" target="_blank">یوتیوب</a> و <a href="https://www.aparat.com/balteredit" target="_blank">آپارات</a> و <a href="https://t.me/balteredit" target="_blank">تلگرام</a> بصورت حرفه ای ادیت با گوشیو آموزش میدم. البته ادیت با سیستمم تو برنامه ام هست که آموزش بدم
+<span style="color: #38f10c;"> چون من معتقدم که اگه میخوای یچیزیو یاد بگیری، اونو یاد بده!
+</span></p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="avatar"><img src="https://uploadkon.ir/uploads/9b8104_25img-two.jpg"></div>
+                            <span class="author">woody</span>
+                        </div>
+                        <div class="date">Laptop Lenovo ideapad gaming 3 - nokia g21</div>
+                        <div class="tag tag-spec">Design</div>
+                    </div>
+                </div>
+                
+                
+                <!-- Card Shop / Print -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://uploadkon.ir/uploads/103d04_25preview-board-3.jpg">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title" style="pointer-events: auto;">
+                            <span>★</span>Shop</div>                    
+                        <div class="card-description" style="direction: rtl;">
+                        <p>راستش هنوزم تصمیم دقیقی نگرفتم براش ولی تو فکرشم که ایده هایی که دارمو پیاده کنمو بتونم باهاش یه شاپ کوچیک رو بگردونم و کسایی که ازم محصولی میخرن دوستدارم همونطور که من ذوق دارم براشون، ذوق داشته باشن و از خریدشون لذت ببرن.. دوستدارم یه محصول بدرد بخور یا حداقل یه یادگاری قشنگ از من داشته باشن!</p>
+                        <p>توی <a href="https://t.me/miniroidd" target="_blank">تلگرام</a> و سایت <a href="https://basalam.com/pastel?utm_source=share&amp;utm_medium=telegram&amp;user_hash_id=400ElB&amp;from_component=vendor-app" target="_blank">باسلام</a> استارتشو زدم ولی خیلی فعال نیستم :)</p></div>
+                        <div class="card-meta">
+                            <div class="avatar"><img src="https://uploadkon.ir/uploads/9b8104_25img-two.jpg"></div>
+                            <span class="author">woody</span>
+                        </div>
+                        <div class="date">epson l3150</div>
+                        <div class="tag tag-green">shop</div>
+                    </div>
+                </div>
+                
+                
+                <!-- Card Photography -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://uploadkon.ir/uploads/f08204_25preview-board-1.jpg">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title" style="pointer-events: auto;">
+                            <span>★</span>Photography</div>                    
+                        <div class="card-description" style="direction: rtl;">
+                        <p>
+                        من به عکاسی کلا از بچگی علاقه داشتم، الان هم خیلی حرفه ای دنبال نمیکنم ولی دوستدارم و از عکاسی و یاد گرفتن چیزای مرتبط بهش لذت میبرم.. عکسای مختلفی که میگیرمو تو <a href="https://pin.it/2glsbHnPn" target="_blank">
+                        بورد عکاسی
+                        </a> تو پینترستم آپلود میکنم.
+                        </p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="avatar"><img src="https://uploadkon.ir/uploads/9b8104_25img-two.jpg"></div>
+                            <span class="author">woody</span>
+                        </div>
+                        <div class="date">camera model : canon EOS 4000d</div>
+                        <div class="tag tag-green">Photography</div>
+                    </div>
+                </div>
+                
+                <!-- Card sketch -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://uploadkon.ir/uploads/909904_25preview-board-2.jpg">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title" style="pointer-events: auto;">
+                            <span>★</span>Sketch</div>                    
+                        <div class="card-description" style="direction: rtl;">
+                        <p>طراحی یکی از بهترین سرگرمیای من مخصوصا تو دوران نوجونیم بود الان هم نه خیلی حرفه ای ولی دنبال میکنم محتواهای مرتبط باهاش رو.. طراحی دیجیتالی رو هم بعد خرید قلم دیجیتالی با لپتاپم خیلی سخت دنبال میکردم و یاد گرفتم قبلش با گوشی و در حد کشیدن از روی تصاویر کار میکردم و خیلی بلد نبودم ! به کارام دقت کنید بیشتر از اینکه نقاشیو تموم کنم از طرح اولیه ای که میکشم لذت میبرم و دوستدارم همونطور خط خطی باشه و اینو بیشتر دوستدارم !<br> برای دیدن نقاشیام میتونید
+                        <a href="https://pin.it/2glsbHnPn" target="_blank">بورد نقاشیم</a> تو پینترست رو چک کنید.                   
+                        </p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="avatar"><img src="https://uploadkon.ir/uploads/9b8104_25img-two.jpg"></div>
+                            <span class="author">woody</span>
+                        </div>
+                        <div class="date">pencil . huion pen (for digital art)</div>
+                        <div class="tag tag-blue">Sketch</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        
+    </div>
+
+    <!-- Floating Element -->
+    <div class="floating-btn">
+        <a href="https://woodywork.ir/" style=" height: 40px;"><img src="https://uploadkon.ir/uploads/9b8104_25img-two.jpg" style="width: 100%;"></a>
+    </div>
+
+</body>
+</html>
