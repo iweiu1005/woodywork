@@ -426,7 +426,7 @@ function showMobileDownloadGuide() {
         guide.innerHTML = `
             <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
                        background: #f8f9fa; padding: 10px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000;">
-                <p>برای ذخیره تصویر، دکمه منو (⋯) و سپس "Download" یا "ذخیره تصویر" را انتخاب کنید</p>
+                <p>برای ذخیره تصویر بعد از انتخاب گزینه " دانلود عکس" وارد صفحه تصویر آماده شده میشید، اونجا روی تصویر انگشتت رو نگه دار و روی دانلود یا " بارگیری تصویر " بزن تا تصویر دانلود شه!</p>
                 <button onclick="this.parentElement.style.display='none'">متوجه شدم</button>
             </div>
         `;
