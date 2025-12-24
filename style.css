@@ -18,10 +18,8 @@ body {
 
 p {  
   text-align: justify; 
-  padding: 0px 18px;
   font-size: 9px;
   text-align: justify;
-  width: 88%;
 }
 
 a {
@@ -41,8 +39,7 @@ a:hover{
 .window {
   display: flex; 
   position: relative; 
-  flex-direction: column; 
-  align-items: center;
+  flex-direction: row-reverse; 
   max-width: 600px;
   width: 300px;
   background: white;
@@ -50,7 +47,9 @@ a:hover{
 }
 
 .other-link-box{
-  display: flex; flex-wrap: wrap; gap: 2px; padding: 0px 15px;
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 2px; 
 }
 a.other-link{
   display: contents;
@@ -63,12 +62,26 @@ a.other-link{
 }
 .menu {
   text-align: right; 
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  margin-left: 5px;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: x-small;
 }
 
 .empty {
   height: 15px; 
-  background-color: #1d1210; 
-  width: 90%;
+  background-color: #ffffff00; 
+  width: 100%;
+}
+
+.left-main-section {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  pointer-events: auto;
 }
 
 .section {
@@ -81,7 +94,7 @@ a.other-link{
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 
