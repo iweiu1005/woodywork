@@ -50,7 +50,7 @@ a:hover{
 
 .postbox{  
     font-weight: 400;
-    font-family: "Samim", sans-serif;
+    font-family: "Samim" !important;
     font-style: normal;
     width: 100%;
     display: flex;
