@@ -1,4 +1,32 @@
-@import url("/file-directory/font/samim/samim.css");
+@font-face {
+  font-family: Samim;
+  src: url('/file-directory/font/samim/Samim.eot');
+  src: url('/file-directory/font/samim/Samim.eot?#iefix') format('embedded-opentype'),
+       url('/file-directory/font/samim/Samim.woff2') format('woff2'),
+       url('/file-directory/font/samim/Samim.woff') format('woff'),
+       url('/file-directory/font/samim/Samim.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Samim;
+  src: url('/file-directory/font/samim/Samim-Bold.eot');
+  src: url('/file-directory/font/samim/Samim-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/file-directory/font/samim/Samim-Bold.woff2') format('woff2'),
+       url('/file-directory/font/samim/Samim-Bold.woff') format('woff'),
+       url('/file-directory/font/samim/Samim-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Samim;
+  src: url('/file-directory/font/samim/Samim-Medium.eot');
+  src: url('/file-directory/font/samim/Samim-Medium.eot?#iefix') format('embedded-opentype'),
+       url('/file-directory/font/samim/Samim-Medium.woff2') format('woff2'),
+       url('/file-directory/font/samim/Samim-Medium.woff') format('woff'),
+       url('/file-directory/font/samim/Samim-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
 
 body {
   display: flex;
@@ -42,6 +70,7 @@ a:hover{
   display: flex; 
   position: relative; 
   flex-direction: row-reverse; 
+  justify-content: space-around;
   max-width: 600px;
   width: 300px;
   background: white;
@@ -50,27 +79,27 @@ a:hover{
 
 .postbox{  
     font-weight: 400;
-    font-family: "Samim" !important;
+    font-family: Samim,Tahoma,"DejaVu Sans",helvetica,arial,freesans,sans-serif ;
     font-style: normal;
     width: 100%;
     display: flex;
     flex-direction: column;
-    max-height: 680px;
+    max-height: 500px;
     padding: 0px 5px;
     scrollbar-gutter: stable;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
+    border: 1px dashed #ededed;
 }
 
 .onepost{
   width: 100%;
+  margin-top: 10px;
     display: block;
     height: auto;
     margin-bottom: 25px;
-    border-bottom: 1px solid #999;
     direction: rtl;
-    font-family: sans-serif;
 }
 .other-link-box{
   display: flex; 
