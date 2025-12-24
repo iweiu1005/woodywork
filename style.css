@@ -1,3 +1,35 @@
+/* —————  FONT   ————— */
+
+@font-face {
+  font-family: Samim;
+  src: url('/file-directory/font/samim/Samim.eot');
+  src: url('Samim.eot?#iefix') format('embedded-opentype'),
+       url('/file-directory/font/samim/Samim.woff2') format('woff2'),
+       url('/file-directory/font/samim/Samim.woff') format('woff'),
+       url('/file-directory/font/samim/Samim.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Samim;
+  src: url('/file-directory/font/samim/Samim-Bold.eot');
+  src: url('Samim-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/file-directory/font/samim/Samim-Bold.woff2') format('woff2'),
+       url('/file-directory/font/samim/Samim-Bold.woff') format('woff'),
+       url('/file-directory/font/samim/Samim-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Samim;
+  src: url('Samim-Medium.eot');
+  src: url('Samim-Medium.eot?#iefix') format('embedded-opentype'),
+       url('/file-directory/font/samim/Samim-Medium.woff2') format('woff2'),
+       url('/file-directory/font/samim/Samim-Medium.woff') format('woff'),
+       url('/file-directory/font/samim/Samim-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -41,9 +73,22 @@ a:hover{
   position: relative; 
   flex-direction: row-reverse; 
   max-width: 600px;
-  width: 300px;
+  width: 350px;
   background: white;
   padding: 5px 0px 5px 0px;
+}
+
+.postbox{  
+    font-family: Samim, sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 680px;
+    padding: 0px 5px;
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
 }
 
 .other-link-box{
