@@ -43,7 +43,7 @@ a:hover{
   position: relative; 
   flex-direction: row-reverse; 
   max-width: 600px;
-  width: 350px;
+  width: 300px;
   background: white;
   padding: 5px 0px 5px 0px;
 }
