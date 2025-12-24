@@ -1,40 +1,10 @@
-/* —————  FONT   ————— */
-
-@font-face {
-  font-family: Samim;
-  src: url('/file-directory/font/samim/Samim.eot');
-  src: url('Samim.eot?#iefix') format('embedded-opentype'),
-       url('/file-directory/font/samim/Samim.woff2') format('woff2'),
-       url('/file-directory/font/samim/Samim.woff') format('woff'),
-       url('/file-directory/font/samim/Samim.ttf') format('truetype');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: Samim;
-  src: url('/file-directory/font/samim/Samim-Bold.eot');
-  src: url('Samim-Bold.eot?#iefix') format('embedded-opentype'),
-       url('/file-directory/font/samim/Samim-Bold.woff2') format('woff2'),
-       url('/file-directory/font/samim/Samim-Bold.woff') format('woff'),
-       url('/file-directory/font/samim/Samim-Bold.ttf') format('truetype');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: Samim;
-  src: url('Samim-Medium.eot');
-  src: url('Samim-Medium.eot?#iefix') format('embedded-opentype'),
-       url('/file-directory/font/samim/Samim-Medium.woff2') format('woff2'),
-       url('/file-directory/font/samim/Samim-Medium.woff') format('woff'),
-       url('/file-directory/font/samim/Samim-Medium.ttf') format('truetype');
-  font-weight: 500;
-}
+@import url("/file-directory/font/samim/samim.css");
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 95vh;   /* ارتفاع کامل صفحه */t;
+  min-height: 95vh;  
   font-family: "Noto Sans", sans-serif;
   font-size: 20px;
   margin: 0;
@@ -79,7 +49,9 @@ a:hover{
 }
 
 .postbox{  
-    font-family: Samim, sans-serif;
+    font-weight: 400;
+    font-family: "Samim", sans-serif;
+    font-style: normal;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -91,6 +63,15 @@ a:hover{
     scrollbar-width: none;
 }
 
+.onepost{
+  width: 100%;
+    display: block;
+    height: auto;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #999;
+    direction: rtl;
+    font-family: sans-serif;
+}
 .other-link-box{
   display: flex; 
   flex-wrap: wrap; 
