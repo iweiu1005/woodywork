@@ -14,6 +14,76 @@
         <!-- Style Link -->
          <link rel="stylesheet" href="/file-directory/font/samim/samim.css">
         <link rel="stylesheet" href="/style.css" />
+        
+        <!-- Styles for the copy button and interaction -->
+        <style>
+            /* Style for the floating button */
+            #copy-mode-button {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                z-index: 1000;
+                padding: 12px 20px;
+                background-color: #4a4a4a;
+                color: white;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+                font-size: 16px;
+                font-family: 'Samim', sans-serif;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            #copy-mode-button:hover {
+                background-color: #5a5a5a;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            }
+            /* Style when waiting for image click */
+            #copy-mode-button.active {
+                background-color: #2ecc71;
+                box-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+                animation: pulse 2s infinite;
+            }
+            /* Tooltip for copied message */
+            .copy-tooltip {
+                position: fixed;
+                bottom: 90px;
+                left: 20px;
+                background-color: #333;
+                color: #fff;
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 14px;
+                z-index: 1001;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+                font-family: 'Samim', sans-serif;
+            }
+            .copy-tooltip.show {
+                opacity: 1;
+            }
+            /* Style to indicate clickable image during selection mode */
+            body.copy-mode-active img {
+                cursor: copy;
+                transition: all 0.2s ease;
+            }
+            body.copy-mode-active img:hover {
+                outline: 3px solid #3498db;
+                outline-offset: 2px;
+                transform: scale(1.02);
+            }
+            /* Animation for the button */
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+                70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+            }
+        </style>
     </head>
     <body>
         <div class="window">
@@ -42,5 +112,152 @@
                                 · Powered by <a class="highlight" href="https://github.com/" target="_blank">github</a>
                         </p>
                 </div>
+        </div>
+
+        <!-- Floating Button and Tooltip for Copy Functionality -->
+        <button id="copy-mode-button">📋 Copy Image Link</button>
+        <div id="copy-tooltip" class="copy-tooltip">✅ Link Copied!</div>
+
+        <script>
+            (function() {
+                // UI Elements
+                const copyModeButton = document.getElementById('copy-mode-button');
+                const tooltip = document.getElementById('copy-tooltip');
+                
+                // State
+                let isCopyModeActive = false;
+                let tooltipTimeout;
+                
+                // Function to copy text to clipboard
+                async function copyToClipboard(text) {
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        showTooltip('✅ Link Copied!');
+                    } catch (err) {
+                        // Fallback for older browsers
+                        const textArea = document.createElement('textarea');
+                        textArea.value = text;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        try {
+                            document.execCommand('copy');
+                            showTooltip('✅ Link Copied!');
+                        } catch (execErr) {
+                            showTooltip('❌ Copy failed. Please try again.');
+                            console.error('Copy failed:', execErr);
+                        }
+                        document.body.removeChild(textArea);
+                    }
+                }
+                
+                // Show tooltip message
+                function showTooltip(message) {
+                    // Clear any existing timeout
+                    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                    
+                    tooltip.textContent = message;
+                    tooltip.classList.add('show');
+                    
+                    // Hide after 2 seconds
+                    tooltipTimeout = setTimeout(() => {
+                        tooltip.classList.remove('show');
+                    }, 2000);
+                }
+                
+                // Enable copy mode
+                function enableCopyMode() {
+                    isCopyModeActive = true;
+                    document.body.classList.add('copy-mode-active');
+                    copyModeButton.classList.add('active');
+                    copyModeButton.innerHTML = '🖱️ Waiting... Click on a GIF';
+                    showTooltip('👆 Now click on any GIF to copy its link');
+                }
+                
+                // Disable copy mode
+                function disableCopyMode() {
+                    isCopyModeActive = false;
+                    document.body.classList.remove('copy-mode-active');
+                    copyModeButton.classList.remove('active');
+                    copyModeButton.innerHTML = '📋 Copy Image Link';
+                }
+                
+                // Handle image click when in copy mode
+                function handleImageClick(event) {
+                    // Only proceed if copy mode is active
+                    if (!isCopyModeActive) return;
+                    
+                    // Find the closest image tag (in case user clicks on a parent element)
+                    let targetElement = event.target;
+                    let imgElement = null;
+                    
+                    // Check if the clicked element is an image
+                    if (targetElement.tagName === 'IMG') {
+                        imgElement = targetElement;
+                    } else {
+                        // Check if there's an image nearby (for cases like <p> containing images)
+                        // But we stop propagation to prevent issues
+                        return;
+                    }
+                    
+                    // We have an image, get its source
+                    if (imgElement && imgElement.src) {
+                        // Prevent default behavior (like following a link if image is wrapped in <a>)
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        // Copy the image source URL
+                        copyToClipboard(imgElement.src);
+                        
+                        // Disable copy mode after successful copy
+                        disableCopyMode();
+                    }
+                }
+                
+                // Toggle copy mode when button is clicked
+                function toggleCopyMode(event) {
+                    // Stop propagation to prevent immediately triggering image click
+                    event.stopPropagation();
+                    
+                    if (isCopyModeActive) {
+                        // If already active, clicking the button disables it
+                        disableCopyMode();
+                        showTooltip('Copy mode cancelled');
+                    } else {
+                        // Enable copy mode
+                        enableCopyMode();
+                    }
+                }
+                
+                // Cancel copy mode if user presses Escape key
+                function handleKeyPress(event) {
+                    if (event.key === 'Escape' && isCopyModeActive) {
+                        disableCopyMode();
+                        showTooltip('Copy mode cancelled');
+                    }
+                }
+                
+                // Prevent copy mode from being triggered when clicking the button itself during active mode
+                // But we need to make sure the button click doesn't propagate to the document
+                
+                // Event Listeners
+                copyModeButton.addEventListener('click', toggleCopyMode);
+                
+                // Add image click handler to the entire document
+                document.addEventListener('click', function(event) {
+                    if (isCopyModeActive) {
+                        handleImageClick(event);
+                    }
+                });
+                
+                // Keyboard listener for Escape key
+                document.addEventListener('keydown', handleKeyPress);
+                
+                // Optional: Cancel copy mode if user clicks on empty space (not an image)
+                // This is handled by the fact that if no image is clicked, nothing happens
+                // but user might want to cancel. We'll let them use Escape or the button.
+                
+                console.log('📋 Image Link Copier initialized! Click the floating button to start.');
+            })();
+        </script>
     </body>
 </html>
