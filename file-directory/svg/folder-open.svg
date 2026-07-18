@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 16 14" shape-rendering="crispEdges">
+
+<path stroke="#cea221" d="M2 0h4M1 1h1" />
+<path stroke="rgba(0,0,0,0.13725490196078433)" d="M6 0h1M13 2h1M0 11h1M15 11h1M2 13h1M13 13h1" />
+<path stroke="rgba(0,0,0,0.043137254901960784)" d="M7 0h1M8 1h1M14 2h1M15 3h1M0 12h1M15 12h1M1 13h1M14 13h1" />
+<path stroke="#ffffff" d="M2 1h4M1 2h1M6 2h1M7 3h5M4 5h2M7 5h5M13 5h1" />
+<path stroke="#c69a18" d="M6 1h1M0 2h1M7 2h6M0 3h1M12 3h1M0 4h1M3 4h11M0 5h1M2 5h1M0 6h1M2 6h1M0 7h1M0 8h1M13 8h1M0 9h1M0 10h1" />
+<path stroke="rgba(0,0,0,0.23137254901960785)" d="M7 1h1M14 3h1M15 4h1M1 12h1M14 12h1" />
+<path stroke="#ffff9c" d="M2 2h4M4 6h8M3 8h1M3 9h1M2 10h1" />
+<path stroke="#fff39c" d="M1 3h1" />
+<path stroke="#fff38c" d="M2 3h5" />
+<path stroke="#9d7a19" d="M13 3h1M13 9h1" />
+<path stroke="#ffeb84" d="M1 4h1M4 8h7" />
+<path stroke="#e2c14f" d="M2 4h1" />
+<path stroke="#b18918" d="M14 4h1" />
+<path stroke="#ffd784" d="M1 5h1" />
+<path stroke="#dabf6b" d="M3 5h1" />
+<path stroke="#fffbf7" d="M6 5h1" />
+<path stroke="#ffe784" d="M12 5h1M11 8h1" />
+<path stroke="#a17d18" d="M14 5h1" />
+<path stroke="rgba(0,0,0,0.4666666666666667)" d="M15 5h1M15 8h1M14 11h1M2 12h1M13 12h1" />
+<path stroke="#fdd56f" d="M1 6h1" />
+<path stroke="#f7f089" d="M3 6h1" />
+<path stroke="#ffc75a" d="M12 6h1" />
+<path stroke="#fbf996" d="M13 6h1" />
+<path stroke="#9b7a18" d="M14 6h1" />
+<path stroke="rgba(0,0,0,0.5607843137254902)" d="M15 6h1M15 7h1M14 10h1M3 12h10" />
+<path stroke="#e2b342" d="M1 7h1" />
+<path stroke="#c9a020" d="M2 7h1" />
+<path stroke="#ffffa5" d="M3 7h1" />
+<path stroke="#fff794" d="M4 7h8" />
+<path stroke="#e7be52" d="M12 7h1" />
+<path stroke="#cebc5b" d="M13 7h1" />
+<path stroke="#a5720c" d="M14 7h1M13 10h1M1 11h12" />
+<path stroke="#cfa225" d="M1 8h1" />
+<path stroke="#d7b83f" d="M2 8h1" />
+<path stroke="#efba42" d="M12 8h1" />
+<path stroke="rgba(0,0,0,0.6078431372549019)" d="M14 8h1M14 9h1M13 11h1" />
+<path stroke="#c69a19" d="M1 9h1" />
+<path stroke="#f0e479" d="M2 9h1" />
+<path stroke="#ffe37b" d="M4 9h7" />
+<path stroke="#ffdf7b" d="M11 9h1" />
+<path stroke="#deb242" d="M12 9h1" />
+<path stroke="rgba(0,0,0,0.2784313725490196)" d="M15 9h1" />
+<path stroke="#c79c1b" d="M1 10h1" />
+<path stroke="#ffd76b" d="M3 10h9" />
+<path stroke="#bf9928" d="M12 10h1" />
+<path stroke="rgba(0,0,0,0.1843137254901961)" d="M15 10h1M3 13h10" />
+</svg>

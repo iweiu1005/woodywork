@@ -1,5 +1,5 @@
 @font-face {
-  font-family: Samim;
+  font-family: "Samim";
   src: url('/file-directory/font/samim/Samim.eot');
   src: url('/file-directory/font/samim/Samim.eot?#iefix') format('embedded-opentype'),
        url('/file-directory/font/samim/Samim.woff2') format('woff2'),
@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: Samim;
+  font-family: "Samim";
   src: url('/file-directory/font/samim/Samim-Bold.eot');
   src: url('/file-directory/font/samim/Samim-Bold.eot?#iefix') format('embedded-opentype'),
        url('/file-directory/font/samim/Samim-Bold.woff2') format('woff2'),
@@ -19,13 +19,24 @@
 }
 
 @font-face {
-  font-family: Samim;
+  font-family: "Samim";
   src: url('/file-directory/font/samim/Samim-Medium.eot');
   src: url('/file-directory/font/samim/Samim-Medium.eot?#iefix') format('embedded-opentype'),
        url('/file-directory/font/samim/Samim-Medium.woff2') format('woff2'),
        url('/file-directory/font/samim/Samim-Medium.woff') format('woff'),
        url('/file-directory/font/samim/Samim-Medium.ttf') format('truetype');
   font-weight: 500;
+}
+
+@font-face {
+    font-family: 'iOS-Emoji';
+    src: url('/file-directory/font/ios/iOS16_14.ttf') format('truetype');
+    unicode-range: U+1F300-1F5FF, U+1F900-1F9FF, U+1F600-1F64F, U+1F680-1F6FF, U+2600-26FF, U+2700-27BF;
+    font-display: swap;
+}
+
+*{
+  box-sizing:border-box;
 }
 
 body {
@@ -44,6 +55,7 @@ body {
   line-height: 1.6;
   flex-direction: column;
   overflow: hidden;
+  font-family: "Samim", "iOS-Emoji";
 }
 
 p {  
@@ -70,12 +82,17 @@ a:hover{
 .window {
   display: flex; 
   position: relative; 
-  flex-direction: row-reverse; 
+      flex-direction: column;
   justify-content: space-around;
   max-width: 600px;
-  width: 300px;
+  width: 350px;
+  height: 500px;
   background: white;
   padding: 5px 0px 5px 0px;
+}
+
+.footer p {
+    text-align: center;
 }
 
 .postbox{  
@@ -141,12 +158,25 @@ a.other-link{
 .menu {
   text-align: right; 
   display: flex;
-  flex-direction: column;
+      flex-direction: row;
   font-size: small;
   margin-left: 5px;
-  gap: 10px;
+  gap: 2px;
   align-items: flex-start;
   font-size: x-small;
+  margin-bottom: 10px;
+}
+.menu a {
+    color: #666666;
+    padding: 0 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+}
+
+.menu a:hover {
+    background: #f7f7f7;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
 }
 
 .empty {
@@ -225,4 +255,228 @@ a.other-link{
     padding: 10px;
   }
 
+}
+
+/* ~ */
+
+.select-icon {
+    height: 8px;
+    width: 8px;
+    background-image: url(/file-directory/img/04.png);
+    background-position: 0px -47px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-size: cover;
+}
+.login-btm a {
+    font-size: 9px;
+    padding: 0 2px;
+    color: #666666;
+}
+.login-btm a:hover{
+  background: none;
+}
+.login-btm{
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+}
+
+.login-btm:hover{
+  background: #f7f7f7;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+}
+
+
+/* HOME */
+.home-main-section {
+    display: flex;
+    align-items: flex-end;
+    pointer-events: auto;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+        padding: 0 20px;
+}
+
+.home-link a {
+    font-size: 9px;
+    padding: 0 2px;
+    color: #666666;
+}
+
+.home-link a:hover {
+    background: none;
+}
+.home-link {
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+}
+.home-link:hover {
+    background: #f7f7f7;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+}
+.home-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+
+/*  LINK   */
+.link-main-section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    align-items: baseline;
+}
+.link-select {
+    height: 8px;
+    width: 8px;
+    background-image: url(/file-directory/img/04.png);
+    background-position: 0px -32px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-size: cover;
+}
+.link-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 10px;
+}
+
+.title-link {
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+}
+
+.title-link {
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+}
+
+.title-link p {
+    font-size: 9px;
+    padding: 0 2px;
+    margin: 0;
+    color: #666666;
+}
+
+.linksforlinks {
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+    transform: translateX(8px);
+    width: fit-content;
+}
+
+.linksforlinks a {
+    font-size: 9px;
+    padding: 0 2px;
+    margin: 0;
+    color: #666666;
+}
+
+.linksforlinks:hover {
+    background: #f7f7f7;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+}
+.linksforlinks a:hover{
+  background: none;
+}
+
+
+.links-icon {
+    height: 8px;
+    width: 8px;
+    background-image: url(/file-directory/img/04.png);
+    background-position: 0px -183px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-size: cover;
+}
+
+.link-box {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ABOUT */
+
+.about-main-section {
+    display: flex;
+    align-items: flex-end;
+    pointer-events: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.about-main-section p {
+    direction: rtl;
+}
+
+/* FOLDERS MISC */
+
+.folders-misc {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.folder-main-section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    align-items: baseline;
+    height: 80%;
+    justify-content: space-between;
+}
+
+.folderx{
+  display: flex;
+    align-items: center;
+    padding: 0 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+    width: 200px;
+    margin-bottom: 5px;
+    gap: 3px;
+}
+
+
+.folderx:hover {
+    background: #f7f7f7;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+}
+.folderx a {
+    font-size: 9px;
+    padding: 0 2px;
+    margin: 0;
+    color: #666666;
+}
+
+.folderx a:hover{
+  background: none;
 }
