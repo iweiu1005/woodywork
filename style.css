@@ -80,15 +80,15 @@ a:hover{
 }
 
 .window {
-  display: flex; 
-  position: relative; 
-      flex-direction: column;
-  justify-content: space-around;
-  max-width: 600px;
-  width: 350px;
-  height: 500px;
-  background: white;
-  padding: 5px 0px 5px 0px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 600px;
+    width: 350px;
+    height: 500px;
+    background: white;
+    padding: 5px 0px 5px 0px;
 }
 
 .footer p {
