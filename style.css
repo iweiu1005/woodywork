@@ -89,7 +89,7 @@ a:hover{
     height: 500px;
     background: white;
     padding: 5px 0px 5px 0px;
-    animation: fadeIn 0.5s ease-in;
+    animation: fadeIn 1s ease-in;
 }
 
 @keyframes fadeIn {
@@ -301,12 +301,14 @@ a.other-link{
     border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 3px;
 }
-span.mark-arrow{
+
+span.arrowdot {
     font-size: 5px;
     color: #666666;
 }
 
-.link-arrow{
+
+link-arrow{
   color: #cccccc;
   font-size: 5px;
 }
@@ -391,6 +393,7 @@ span.mark-arrow{
     padding: 0 2px;
     border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 3px;
+        font-weight: 500;
 }
 
 .title-link {
