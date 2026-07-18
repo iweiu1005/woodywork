@@ -492,3 +492,71 @@ a.other-link{
     padding: 5px 0px 5px 0px;
     align-items: center;
 }
+
+/* Copy Button Styles*/
+            /* Style for the floating button */
+            #copy-mode-button {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                z-index: 1000;
+                padding: 12px 20px;
+                background-color: #4a4a4a;
+                color: white;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+                font-size: 16px;
+                font-family: 'Samim', sans-serif;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            #copy-mode-button:hover {
+                background-color: #5a5a5a;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            }
+            /* Style when waiting for image click */
+            #copy-mode-button.active {
+                background-color: #2ecc71;
+                box-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+                animation: pulse 2s infinite;
+            }
+            /* Tooltip for copied message */
+            .copy-tooltip {
+                position: fixed;
+                bottom: 90px;
+                left: 20px;
+                background-color: #333;
+                color: #fff;
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 14px;
+                z-index: 1001;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+                font-family: 'Samim', sans-serif;
+            }
+            .copy-tooltip.show {
+                opacity: 1;
+            }
+            /* Style to indicate clickable image during selection mode */
+            body.copy-mode-active img {
+                cursor: copy;
+                transition: all 0.2s ease;
+            }
+            body.copy-mode-active img:hover {
+                outline: 3px solid #3498db;
+                outline-offset: 2px;
+                transform: scale(1.02);
+            }
+            /* Animation for the button */
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+                70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+            }
