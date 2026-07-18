@@ -480,3 +480,15 @@ a.other-link{
 .folderx a:hover{
   background: none;
 }
+.window-404 {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 600px;
+    width: 350px;
+    height: 500px;
+    background: white;
+    padding: 5px 0px 5px 0px;
+    align-items: center;
+}
