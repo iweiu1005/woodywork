@@ -301,7 +301,7 @@ a.other-link{
     border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 3px;
 }
-.mark-arrow{
+span.mark-arrow{
     font-size: 5px;
     color: #666666;
 }
