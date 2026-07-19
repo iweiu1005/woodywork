@@ -72,7 +72,7 @@ a {
 }
 
 a:hover{
-    background-color: #ffe9e9;
+    background-color: #f9f5c0;
 }
 ::selection{
   background-color: #feffe9;
@@ -203,7 +203,7 @@ a.other-link{
   width: 100%;
 }
 
-.left-main-section {
+.homepage {
   display: flex; 
   flex-direction: column; 
   align-items: center; 
@@ -247,6 +247,16 @@ a.other-link{
   background: #ebccff;
 }
 
+.main-section {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+
+.main-section p a{  
+    color: #ffc107;
+    text-decoration: underline;
+}
 
 /* ————— RESPONSIVE ————— */
 @media (max-width: 768px) {
@@ -320,14 +330,13 @@ link-arrow{
 }
 
 
+
 /* HOME */
-.home-main-section {
-    display: flex;
+.home {
     align-items: flex-end;
     pointer-events: auto;
     flex-direction: row-reverse;
     justify-content: space-between;
-        padding: 0 20px;
 }
 
 .home-link a {
@@ -365,10 +374,8 @@ link-arrow{
     font-size: 6px;
 }
 
-.link-main-section {
-    display: flex;
+.linkh {
     flex-direction: column;
-    padding: 0 20px;
     align-items: baseline;
 }
 .link-select {
@@ -457,8 +464,7 @@ link-arrow{
 
 /* ABOUT */
 
-.about-main-section {
-    display: flex;
+.abouth {
     align-items: flex-end;
     pointer-events: auto;
     flex-direction: row;
@@ -466,7 +472,7 @@ link-arrow{
     gap: 10px;
 }
 
-.about-main-section p {
+.abouth p {
     direction: rtl;
 }
 
@@ -478,10 +484,8 @@ link-arrow{
     width: fit-content;
 }
 
-.folder-main-section {
-    display: flex;
+.folderh {
     flex-direction: column;
-    padding: 0 20px;
     align-items: baseline;
     height: 80%;
     justify-content: space-between;
@@ -596,3 +600,11 @@ link-arrow{
 
 
             
+
+/* Movie */
+.movie-post {
+    flex-direction: column;
+    padding: 0 20px;
+    align-items: baseline;
+    height: 80%;
+}
