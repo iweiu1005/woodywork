@@ -1,36 +1,36 @@
 @font-face {
   font-family: "Samim";
-  src: url('/file-directory/font/samim/Samim.eot');
-  src: url('/file-directory/font/samim/Samim.eot?#iefix') format('embedded-opentype'),
-    url('/file-directory/font/samim/Samim.woff2') format('woff2'),
-    url('/file-directory/font/samim/Samim.woff') format('woff'),
-    url('/file-directory/font/samim/Samim.ttf') format('truetype');
+  src: url('/sample-design/Aby/files/font/samim/Samim.eot');
+  src: url('/sample-design/Aby/files/font/samim/Samim.eot?#iefix') format('embedded-opentype'),
+    url('/sample-design/Aby/files/font/samim/Samim.woff2') format('woff2'),
+    url('/sample-design/Aby/files/font/samim/Samim.woff') format('woff'),
+    url('/sample-design/Aby/files/font/samim/Samim.ttf') format('truetype');
   font-weight: normal;
 }
 
 @font-face {
   font-family: "Samim";
-  src: url('/file-directory/font/samim/Samim-Bold.eot');
-  src: url('/file-directory/font/samim/Samim-Bold.eot?#iefix') format('embedded-opentype'),
-    url('/file-directory/font/samim/Samim-Bold.woff2') format('woff2'),
-    url('/file-directory/font/samim/Samim-Bold.woff') format('woff'),
-    url('/file-directory/font/samim/Samim-Bold.ttf') format('truetype');
+  src: url('/sample-design/Aby/files/font/samim/Samim-Bold.eot');
+  src: url('/sample-design/Aby/files/font/samim/Samim-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/sample-design/Aby/files/font/samim/Samim-Bold.woff2') format('woff2'),
+    url('/sample-design/Aby/files/font/samim/Samim-Bold.woff') format('woff'),
+    url('/sample-design/Aby/files/font/samim/Samim-Bold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: "Samim";
-  src: url('/file-directory/font/samim/Samim-Medium.eot');
-  src: url('/file-directory/font/samim/Samim-Medium.eot?#iefix') format('embedded-opentype'),
-    url('/file-directory/font/samim/Samim-Medium.woff2') format('woff2'),
-    url('/file-directory/font/samim/Samim-Medium.woff') format('woff'),
-    url('/file-directory/font/samim/Samim-Medium.ttf') format('truetype');
+  src: url('/sample-design/Aby/files/font/samim/Samim-Medium.eot');
+  src: url('/sample-design/Aby/files/font/samim/Samim-Medium.eot?#iefix') format('embedded-opentype'),
+    url('/sample-design/Aby/files/font/samim/Samim-Medium.woff2') format('woff2'),
+    url('/sample-design/Aby/files/font/samim/Samim-Medium.woff') format('woff'),
+    url('/sample-design/Aby/files/font/samim/Samim-Medium.ttf') format('truetype');
   font-weight: 500;
 }
 
 @font-face {
   font-family: 'iOS-Emoji';
-  src: url('/file-directory/font/ios/iOS16_14.ttf') format('truetype');
+  src: url('/sample-design/Aby/files/font/ios/iOS16_14.ttf') format('truetype');
   unicode-range: U+1F300-1F5FF, U+1F900-1F9FF, U+1F600-1F64F, U+1F680-1F6FF, U+2600-26FF, U+2700-27BF;
   font-display: swap;
 }
@@ -63,7 +63,7 @@ body {
   font-size: 20px;
   margin: 0;
   background-color: var(--bg);
-  background-image: url(/file-directory/img/pattern.svg);
+  background-image: url(/sample-design/Aby/files/img/pattern.svg);
   background-size: 72px;
   background-repeat: repeat;
   background-position: 5px 5px;
@@ -330,7 +330,7 @@ a.other-link {
 .select-icon {
   height: 8px;
   width: 8px;
-  background-image: url(/file-directory/img/04.png);
+  background-image: url(/sample-design/Aby/files/img/04.png);
   background-position: 0px -47px;
   background-repeat: no-repeat;
   display: inline-block;
@@ -428,7 +428,7 @@ link-arrow {
 .link-select {
   height: 8px;
   width: 8px;
-  background-image: url(/file-directory/img/04.png);
+  background-image: url(/sample-design/Aby/files/img/04.png);
   background-position: 0px -32px;
   background-repeat: no-repeat;
   display: inline-block;
@@ -496,7 +496,7 @@ link-arrow {
 .links-icon {
   height: 8px;
   width: 8px;
-  background-image: url(/file-directory/img/04.png);
+  background-image: url(/sample-design/Aby/files/img/04.png);
   background-position: 0px -184px;
   background-repeat: no-repeat;
   display: inline-block;
