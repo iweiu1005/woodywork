@@ -695,3 +695,7 @@ link-arrow{
                      #ffffff;
   }
 }
+
+.emptybox {
+  height: 150px;width: 100%;text-align: center;font-size: 10px;color: #f9f5c0;
+}
