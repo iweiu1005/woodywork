@@ -1,0 +1,281 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;   /* ارتفاع کامل صفحه */t;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 20px;
+  margin: 0;
+  background-color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+p {
+  font-size: 8px;
+  text-align: justify;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+}
+
+a {
+  color: #ff5f56;
+  text-decoration:none;
+  padding: 0px 5px 0px 5px;
+}
+
+a:hover{
+    background-color: #ffe9e9;
+}
+::selection{
+  background-color: #ffe9e9;
+  color: #ff5f56;
+}
+
+.window {
+  max-width: 600px;
+  width: 500px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 5px 0px 5px 0px;
+}
+
+.wbody{
+  display: flex;  
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+  overflow: hidden;
+}
+
+.window-header {
+  font-size: 12px;
+  background: #ffffff;
+  padding: 12px 12px 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.window-header .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.window-header .red { background: #ff5f56; }
+.window-header .yellow { background: #ffbd2e; }
+.window-header .green { background: #27c93f; }
+
+.top-box {
+  display: flex;
+  justify-content: space-between;  
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+    font-size: 12px;
+  margin-left: 10px;
+}
+
+.header-right a {
+  color: #666;
+  font-size: 12px;
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.header-right a:hover{
+    color: #ff5f56;
+    background-color: #fff;
+}
+
+.window-body {
+  display: flex;
+  padding: 0px 12px 12px 12px;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  font-size: 9px;
+  width: 200px;
+  align-items: center;
+  padding: 15px 10px;
+  background-color: #f0fff3;
+}
+
+.sidebar img {
+  width: 95%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.section {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.section-title {
+  position: relative;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  border-radius: 5px;
+  color: #ffbd2e;
+}
+
+.section-title::before{
+  content: url("https://iweiu.storage.c2.liara.space/gif/3X4DIIRTITLD3KH5P22IIY3YKCNY3IKK.gif");
+  margin-right: 4px;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 220px;
+  padding: 15px 10px;
+}
+
+.card {
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.gallery-img {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  width: -webkit-fill-available;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.img-box{
+  width: 65px;
+  border-radius: 6px;
+  object-fit: cover;
+  height: 65px;
+  display: flex;
+  overflow: hidden;
+}
+.gallery-img img {
+  margin-top: 0;
+  width: 100%;
+}
+
+.card-img {
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+
+.highlight {
+  background: #f9f5c0;
+}
+
+.danger {
+  background: #ffe9e9;
+  color: darkred;
+  font-weight: bold;
+}
+
+/* ————— RESPONSIVE ————— */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  p {
+    font-size: 6px;
+  }
+  .header-right a {
+    font-size: 8px;
+  }
+  .title{
+    font-size: 8px;
+  }
+
+  .window {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .window-body {
+    gap: 15px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+  .main {
+    width: 100%;
+  }
+  
+  .img-box{
+    width: 50px;
+    height: 50px;
+  }
+
+  .window-header {
+    padding: 8px 12px 8px 12px;
+  }
+
+  .card {
+    padding: 8px;
+  }
+
+  .card-img {
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .window-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .header-left {
+    flex-wrap: nowrap;
+  }
+
+  .card-img {
+    margin-top: 4px;
+  }
+}
